@@ -9,6 +9,8 @@
             <th>Category</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Action</th>
+            <th>Cart Item</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +21,16 @@
                 <td>@p.Category</td>
                 <td>@p.Price.ToString("C")</td>
                 <td>@p.StockQuantity</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@p.Id">Delete</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Add" asp-route-id="@p.Id">
+                        Add to Cart
+                    </a>
+                </td>>
+
             </tr>
         }
     </tbody>

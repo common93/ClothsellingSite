@@ -1,0 +1,88 @@
+﻿@model CheckoutViewModel
+@{
+    var cart = ViewBag.Cart as List<ClothingStoreApp.Models.CartViewModel>;
+    decimal total = ViewBag.Total;
+}
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <div class="card shadow-lg border-0 p-4" style="max-width: 450px; width:100%; border-radius: 12px;">
+
+        <h3 class="text-center mb-4 fw-bold">Checkout</h3>
+
+        <!-- Order Summary Box -->
+        <div class="mb-4 p-3 border rounded bg-light">
+            <h5 class="fw-bold mb-3">Order Summary</h5>
+
+            @foreach (var item in cart)
+            {
+                <div class="d-flex justify-content-between mb-2">
+                    <span>@item.Name x @item.Quantity</span>
+                    <span>₹@(item.Price* item.Quantity)</span>
+                </div>
+            }
+
+            <hr />
+            <div class="d-flex justify-content-between fw-bold fs-5">
+                <span>Total</span>
+                <span>₹@total</span>
+            </div>
+        </div>
+
+        <form method="post">
+            <div class="form-floating mb-3">
+                <input asp-for="CustomerName" class="form-control" placeholder="Enter your name" required />
+                <label class="fw-semibold">Full Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required />
+                <label class="fw-semibold">Email</label>
+            </div>
+
+            <div class="form-floating mb-4">
+                <textarea asp-for="Address" class="form-control" placeholder="Delivery Address" style="height: 110px;" required></textarea>
+                <label class="fw-semibold">Address</label>
+            </div>
+
+            <div class="mb-4">
+                <label class="fw-semibold mb-2">Payment Method</label>
+
+                <div class="form-check">
+                    <div class="mb-4">
+                        <label class="fw-semibold mb-2">Select Payment Method</label>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="COD" checked>
+                            <label class="form-check-label fw-semibold">Cash on Delivery (COD)</label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="UPI">
+                            <label class="form-check-label fw-semibold">UPI (Google Pay / PhonePe / Paytm)</label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Card">
+                            <label class="form-check-label fw-semibold">Credit / Debit Card</label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Wallet">
+                            <label class="form-check-label fw-semibold">Wallet (Paytm / PhonePe)</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                @* Future for online payment *@
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Online" disabled>
+                    <label class="form-check-label text-muted">Online Payment (Coming Soon)</label>
+                </div>
+            </div>
+
+            <button class="btn btn-dark w-100 py-2 fw-bold" style="border-radius: 8px;">
+                Place Order
+            </button>
+        </form>
+    </div>
+</div>

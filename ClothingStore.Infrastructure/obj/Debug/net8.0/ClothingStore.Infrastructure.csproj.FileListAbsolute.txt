@@ -15,3 +15,4 @@ C:\PR\Project\ClothingStoreApp\ClothingStore.Infrastructure\obj\Debug\net8.0\ref
 C:\PR\Project\ClothingStoreApp\ClothingStore.Infrastructure\obj\Debug\net8.0\ClothingStore.Infrastructure.pdb
 C:\PR\Project\ClothingStoreApp\ClothingStore.Infrastructure\obj\Debug\net8.0\ClothingStore.Infrastructure.genruntimeconfig.cache
 C:\PR\Project\ClothingStoreApp\ClothingStore.Infrastructure\obj\Debug\net8.0\ref\ClothingStore.Infrastructure.dll
+C:\PR\Project\ClothingStoreApp\ClothingStore.Infrastructure\obj\Debug\net8.0\ClothingStore.Infrastructure.sourcelink.json

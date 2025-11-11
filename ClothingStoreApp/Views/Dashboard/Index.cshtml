@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Dashboard/_AdminLayout.cshtml";
+}
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card-stats">
+            <h5>Total Sales</h5>
+            <h2 class="fw-bold">₹@ViewBag.TotalSales</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card-stats">
+            <h5>Total Orders</h5>
+            <h2 class="fw-bold">@ViewBag.TotalOrders</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card-stats">
+            <h5>Customers</h5>
+            <h2 class="fw-bold">@ViewBag.TotalUsers</h2>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 bg-white p-4 rounded shadow-sm">
+    <h5 class="fw-bold mb-3">Sales Insights</h5>
+    <canvas id="salesChart" style="height:350px"></canvas>
+</div>

@@ -20,3 +20,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.product-scroll {
+    scroll-behavior: smooth;
+}
+
+    .product-scroll::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .product-scroll::-webkit-scrollbar-thumb {
+        background: #bbb;
+        border-radius: 10px;
+    }
+.form-floating > label {
+    color: #555 !important;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 .15rem rgba(0,0,0,0.3);
+    border-color: #000;
+}
+.add-btn {
+    margin-top: 10px;
+}

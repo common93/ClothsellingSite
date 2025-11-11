@@ -1,0 +1,38 @@
+﻿@model ClothingStoreApp.Models.ProductViewModel
+
+<h2>Add Product</h2>
+
+<form method="post">
+    <div class="mb-2">
+        <label>Name</label>
+        <input class="form-control" asp-for="Name" required />
+    </div>
+
+    <div class="mb-2">
+        <label>Description</label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+    </div>
+
+    <div class="mb-2">
+        <label>Price</label>
+        <input class="form-control" asp-for="Price" type="number" step="0.01" required />
+    </div>
+
+    <div class="mb-2">
+        <label>Category</label>
+        <input class="form-control" asp-for="Category" required />
+    </div>
+
+    <div class="mb-2">
+        <label>Stock</label>
+        <input class="form-control" asp-for="StockQuantity" type="number" required />
+    </div>
+
+    <div class="mb-2">
+        <label>Image URL</label>
+        <input class="form-control" asp-for="ImageUrl" />
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>

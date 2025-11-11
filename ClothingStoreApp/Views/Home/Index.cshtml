@@ -1,8 +1,145 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<ClothingStore.Core.Entities.Product>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clothing Store - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* Header */
+        .header {
+            background: #000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url("https://images.unsplash.com/photo-1521334884684-d80222895322?w=1200") center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,.6);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Categories */
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            margin: 30px 0 10px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            width: 30%;
+            min-width: 150px;
+            background: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .category:hover {
+                scale: 1.05;
+                background: #222;
+                color: #fff;
+            }
+
+        /* Button */
+        .shop-btn {
+            display: block;
+            width: 180px;
+            margin: 30px auto;
+            padding: 12px;
+            text-align: center;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .shop-btn:hover {
+                background: #333;
+            }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">Clothing Store</div>
+
+    <div class="hero">Discover Your Style</div>
+
+    <div class="section-title">Shop by Category</div>
+
+    <div class="categories">
+        <div class="category" onclick="openPage('men')">👔 Men</div>
+        <div class="category" onclick="openPage('women')">👗 Women</div>
+        <div class="category" onclick="openPage('kids')">🧒 Kids</div>
+    </div>
+
+    <a class="shop-btn" href="/Product">Shop All Products</a>
+
+    <!-- Scrollable Product Section -->
+    <div class="container my-5">
+        <h3 class="fw-bold mb-3">Popular Products</h3>
+
+        <div class="product-scroll d-flex overflow-auto gap-3 pb-3">
+
+            @foreach (var p in Model.Take(10))
+            {
+                <div class="card product-card" style="min-width: 180px;">
+                    <img src="@p.ImageUrl" class="card-img-top" style="height: 180px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h6 class="fw-bold mb-1">@p.Name</h6>
+                        <p class="text-muted mb-1">₹@p.Price</p>
+                        <a href="/Product/Details/@p.Id" class="btn btn-dark btn-sm w-100">View</a>
+                        <a href="/Cart/Add/@p.Id" class="btn btn-dark btn-sm w-100 add-btn">Add To Cart</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+    <script>
+        function openPage(category) {
+            window.location.href = "/Product?category=" + category;
+        }
+    </script>
+
+</body>
+</html>

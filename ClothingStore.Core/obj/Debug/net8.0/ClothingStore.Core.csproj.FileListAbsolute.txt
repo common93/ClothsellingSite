@@ -12,3 +12,4 @@ C:\PR\Project\ClothingStoreApp\ClothingStore.Core\obj\Debug\net8.0\ref\ClothingS
 C:\PR\Project\ClothingStoreApp\ClothingStore.Core\bin\Debug\net8.0\ClothingStore.Core.runtimeconfig.json
 C:\PR\Project\ClothingStoreApp\ClothingStore.Core\obj\Debug\net8.0\ClothingStore.Core.csproj.AssemblyReference.cache
 C:\PR\Project\ClothingStoreApp\ClothingStore.Core\obj\Debug\net8.0\ClothingStore.Core.genruntimeconfig.cache
+C:\PR\Project\ClothingStoreApp\ClothingStore.Core\obj\Debug\net8.0\ClothingStore.Core.sourcelink.json

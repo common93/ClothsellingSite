@@ -173,3 +173,15 @@ C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\ru\Microsoft.Co
 C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\obj\Debug\net8.0\ClothingStoreApp.sourcelink.json
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\iTextSharp.LGPLv2.Core.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\SkiaSharp.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\runtimes\osx\native\libSkiaSharp.dylib
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\PR\Project\ClothingStoreApp\ClothingStoreApp\obj\Debug\net8.0\ClothingStoreApp.MvcApplicationPartsAssemblyInfo.cs

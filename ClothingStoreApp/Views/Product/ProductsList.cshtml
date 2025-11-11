@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ClothingStore.Core.Entities.Product>
+@{
+    Layout = "~/Views/Dashboard/_AdminLayout.cshtml";
+}
+@using Microsoft.AspNetCore.Http
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold">Manage Products</h3>
+
+    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProductModal">
+        + Add Product
+    </button>
+</div>
+
+
+
+
+<!-- Product List -->
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price (₹)</th>
+            <th>Stock</th>
+            <th style="width:120px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var p in Model)
+        {
+            <tr>
+                <td><img src="@p.ImageUrl" style="width:60px; height:60px; object-fit:cover;" /></td>
+                <td>@p.Name</td>
+                <td>@p.Category</td>
+                <td>@p.Price</td>
+                <td>@p.StockQuantity</td>
+                <td>
+                    <a href="/Dashboard/Product/Edit/@p.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="/Dashboard/Product/Delete/@p.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Add Product Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form method="post" asp-area="Admin" asp-controller="Products" asp-action="Create">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="fw-semibold">Product Name</label>
+                        <input name="Name" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Category</label>
+                        <select name="Category" class="form-select" required>
+                            @foreach (var cat in ViewBag.Categories)
+                            {
+                                <option value="@cat">@cat</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Price (₹)</label>
+                        <input name="Price" type="number" step="0.01" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Stock Quantity</label>
+                        <input name="StockQuantity" type="number" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Image URL</label>
+                        <input name="ImageUrl" class="form-control" required />
+                        @* Later we'll replace with file upload *@
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-dark">Save</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@model ClothingStoreApp.Models.ProductViewModel
+
+<h2>Edit Product</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    ... (same fields as Create view) ...
+
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>
