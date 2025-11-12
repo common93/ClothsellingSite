@@ -2,6 +2,7 @@ using ClothingStore.Core.Entities;
 using ClothingStore.Core.Interfaces;
 using ClothingStore.Infrastructure.Data;
 using ClothingStoreApp.Models;
+using ClothingStoreApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<CartService>();
+builder.Services.AddHttpContextAccessor();
 
 
 
