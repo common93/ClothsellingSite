@@ -12,7 +12,7 @@ namespace ClothingStore.Core.Entities
     {
         [Key]
         public int Id { get; set; }
-
+    
         [Required]
         public int ProductId { get; set; }
 
@@ -24,6 +24,8 @@ namespace ClothingStore.Core.Entities
 
         [Required]
         public int CartId { get; set; }
+
+        public int UserId { get; set; }
 
         [ForeignKey(nameof(CartId))]
         public Cart Cart { get; set; }

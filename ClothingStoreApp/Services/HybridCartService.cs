@@ -6,7 +6,9 @@ using ClothingStoreApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SkiaSharp;
 using System.Security.Claims;
+using static System.Net.WebRequestMethods;
 
 namespace ClothingStoreApp.Services
 {
@@ -27,6 +29,11 @@ namespace ClothingStoreApp.Services
         private HttpContext HttpContext => _httpContextAccessor.HttpContext!;
         private string? GetUserId() => HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
 
+        public string? UserId =>
+        HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        public bool IsUserLoggedIn() =>
+            !string.IsNullOrEmpty(UserId);
         // -------- Session helpers --------
         public async Task<List<CartViewModel>> GetSessionCartAsync()
         {
@@ -227,5 +234,49 @@ namespace ClothingStoreApp.Services
             // Clear session cart after merge
             await SaveSessionCartAsync(new List<CartViewModel>());
         }
+
+        public async Task<List<CartViewModel>> GetUserCartAsync()
+        {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var dbItems = await GetDbCartItemsAsync();
+
+                return dbItems.Select(x => new CartViewModel
+                {
+                    ProductId = x.ProductId,
+                    Name = x.Product.Name,
+                    Price = x.Product.Price,
+                    Quantity = x.Quantity,
+                    ImageUrl = x.Product.ImageUrl
+                }).ToList();
+            }
+            else
+            {
+                return await GetSessionCartAsync();
+            }
+        }
+        public async Task ClearUserCartAsync()
+        {
+            // Logged-in user → Clear DB cart
+            if (IsUserLoggedIn())
+            {
+                var items = _db.CartItems.Where(c => c.UserId == int.Parse(GetUserId()));
+
+                if (items.Any())
+                {
+                    _db.CartItems.RemoveRange(items);
+                    await _db.SaveChangesAsync();
+                }
+
+                return;
+            }
+
+            // Guest → Clear session cart
+            HttpContext.Session.Remove(SessionCartKey);
+        }
+
+
     }
 }

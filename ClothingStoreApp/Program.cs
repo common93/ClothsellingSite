@@ -24,11 +24,9 @@ builder.Services.AddSession(options =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<CartService>();
 builder.Services.AddHttpContextAccessor();
+//builder.Services.AddScoped<CartService>();
 
-
-builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICartService, HybridCartService>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

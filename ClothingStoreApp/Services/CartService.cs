@@ -1,101 +1,307 @@
 ﻿using ClothingStore.Core.Entities;
 using ClothingStore.Infrastructure.Data;
+using ClothingStoreApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Security.Claims;
+using static System.Net.WebRequestMethods;
 
 namespace ClothingStoreApp.Services
 {
     public class CartService
     {
         private readonly AppDbContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public CartService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        private const string SessionCartKey = "SESSION_CART";
+
+        public CartService(AppDbContext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
+            _contextAccessor = contextAccessor;
         }
 
-        private string? GetUserId()
+        // ---------------------------------------
+        //  SHORTCUTS
+        // ---------------------------------------
+        private HttpContext HttpContext => _contextAccessor.HttpContext;
+
+        public string? UserId =>
+            HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        public bool IsUserLoggedIn() =>
+            !string.IsNullOrEmpty(UserId);
+
+
+        // =====================================================
+        //  🔹 SESSION CART FUNCTIONS (Guest Users)
+        // =====================================================
+        private List<CartViewModel> GetSessionCart()
         {
-            return _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var data = HttpContext.Session.GetString(SessionCartKey);
+            return data == null ? new List<CartViewModel>()
+                                : JsonConvert.DeserializeObject<List<CartViewModel>>(data);
         }
 
-        public async Task<Cart> GetOrCreateCartAsync()
+        private void SaveSessionCart(List<CartViewModel> cart)
         {
-            var userId = GetUserId();
-            if (string.IsNullOrEmpty(userId))
-                throw new InvalidOperationException("User not logged in.");
+            HttpContext.Session.SetString(SessionCartKey,
+                JsonConvert.SerializeObject(cart));
+        }
 
-            var cart = await _context.Carts
-                .Include(c => c.Items)
-                .ThenInclude(i => i.Product)
-                .FirstOrDefaultAsync(c => c.UserId == userId);
 
-            if (cart == null)
+        // =====================================================
+        //  🔹 DB CART FUNCTIONS (Logged-in Users)
+        // =====================================================
+        private async Task<List<CartItem>> GetDbCart()
+        {
+            return await _context.CartItems
+                .Include(p => p.Product)
+               // .Where(x => x.UserId == UserId)
+                .ToListAsync();
+        }
+
+
+        // =====================================================
+        //  🔹 HYBRID: GET USER CART (SESSION OR DB)
+        // =====================================================
+        //public async Task<List<CartViewModel>> GetUserCartAsync()
+        //{
+        //    if (IsUserLoggedIn())
+        //    {
+        //        var dbItems = await GetDbCart();
+
+        //        return dbItems.Select(x => new CartViewModel
+        //        {
+        //            ProductId = x.ProductId,
+        //            Name = x.Product.Name,
+        //            Price = x.Product.Price,
+        //            Quantity = x.Quantity,
+        //            ImageUrl = x.Product.ImageUrl
+        //        }).ToList();
+        //    }
+        //    else
+        //    {
+        //        return GetSessionCart();
+        //    }
+        //}
+
+
+        // =====================================================
+        //  🔹 ADD TO CART (Session / DB Smart Switch)
+        // =====================================================
+        public async Task AddToCartAsync(int productId, int qty = 1)
+        {
+            if (IsUserLoggedIn())
             {
-                cart = new Cart { UserId = userId };
-                _context.Carts.Add(cart);
+                var dbCart = await GetDbCart();
+                var item = dbCart.FirstOrDefault(x => x.ProductId == productId);
+
+                if (item == null)
+                {
+                    _context.CartItems.Add(new CartItem
+                    {
+                        ProductId = productId,
+                        Quantity = qty,
+                        UserId = int.Parse(UserId)
+                    });
+                }
+                else
+                {
+                    item.Quantity += qty;
+                }
+
                 await _context.SaveChangesAsync();
-            }
-
-            return cart;
-        }
-
-        public async Task AddToCartAsync(int productId, int quantity = 1)
-        {
-            var cart = await GetOrCreateCartAsync();
-            var item = cart.Items.FirstOrDefault(i => i.ProductId == productId);
-
-            if (item == null)
-            {
-                cart.Items.Add(new CartItem { ProductId = productId, Quantity = quantity });
             }
             else
             {
-                item.Quantity += quantity;
-            }
+                var cart = GetSessionCart();
+                var item = cart.FirstOrDefault(x => x.ProductId == productId);
 
-            await _context.SaveChangesAsync();
+                var product = await _context.Products.FindAsync(productId);
+
+                if (product == null) return;
+
+                if (item == null)
+                {
+                    cart.Add(new CartViewModel
+                    {
+                        ProductId = product.Id,
+                        Name = product.Name,
+                        Price = product.Price,
+                        Quantity = qty,
+                        ImageUrl = product.ImageUrl
+                    });
+                }
+                else
+                {
+                    item.Quantity += qty;
+                }
+
+                SaveSessionCart(cart);
+            }
         }
 
-        public async Task RemoveFromCartAsync(int productId)
-        {
-            var cart = await GetOrCreateCartAsync();
-            var item = cart.Items.FirstOrDefault(i => i.ProductId == productId);
 
-            if (item != null)
+        // =====================================================
+        //  🔹 CLEAR CART (Session or DB)
+        // =====================================================
+        public async Task ClearUserCartAsync()
+        {
+            if (!IsUserLoggedIn())
             {
-                cart.Items.Remove(item);
-                await _context.SaveChangesAsync();
+                HttpContext.Session.Remove(SessionCartKey);
+                return;
             }
-        }
 
-        public async Task ClearCartAsync()
-        {
-            var cart = await GetOrCreateCartAsync();
-            _context.CartItems.RemoveRange(cart.Items);
+            var items = _context.CartItems.Where(x => x.Cart.UserId == UserId);
+            _context.CartItems.RemoveRange(items);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<CartItem>> GetCartItemsAsync()
-        {
-            var cart = await GetOrCreateCartAsync();
-            return cart.Items.ToList();
-        }
-        //public async Task ClearDbCartAsync()
-        //{
-        //    var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var items = _context.CartItems.Where(x => x.UserId == userId);
-        //    _context.CartItems.RemoveRange(items);
-        //    await _context.SaveChangesAsync();
-        //}
 
-        //public Task ClearSessionCartAsync()
+        // =====================================================
+        //  🔹 REMOVE ITEM (Session or DB)
+        // =====================================================
+        public async Task RemoveItemAsync(int productId)
+        {
+            if (IsUserLoggedIn())
+            {
+                var dbItems = await GetDbCart();
+                var item = dbItems.FirstOrDefault(x => x.ProductId == productId);
+
+                if (item != null)
+                {
+                    _context.CartItems.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                var cart = GetSessionCart();
+                cart.RemoveAll(x => x.ProductId == productId);
+                SaveSessionCart(cart);
+            }
+        }
+
+
+        // =====================================================
+        //  🔹 INCREASE / DECREASE (common)
+        // =====================================================
+        public async Task IncreaseAsync(int productId)
+        {
+            await AddToCartAsync(productId, qty: 1);
+        }
+
+        public async Task DecreaseAsync(int productId)
+        {
+            if (IsUserLoggedIn())
+            {
+                var dbItems = await GetDbCart();
+                var item = dbItems.FirstOrDefault(x => x.ProductId == productId);
+
+                if (item != null)
+                {
+                    item.Quantity -= 1;
+
+                    if (item.Quantity <= 0)
+                        _context.CartItems.Remove(item);
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                var cart = GetSessionCart();
+                var item = cart.FirstOrDefault(x => x.ProductId == productId);
+
+                if (item != null)
+                {
+                    item.Quantity -= 1;
+                    if (item.Quantity <= 0)
+                        cart.Remove(item);
+                }
+
+                SaveSessionCart(cart);
+            }
+        }
+        // =====================================================
+        public async Task<List<CartViewModel>> GetUserCartAsync()
+        {
+            if (IsUserLoggedIn())
+            {
+                var items = await _context.CartItems
+                    .Include(i => i.Product)
+                    .Where(i => i.UserId == int.Parse(UserId))
+                    .ToListAsync();
+
+                return items.Select(i => new CartViewModel
+                {
+                    ProductId = i.ProductId,
+                    Name = i.Product.Name,
+                    ImageUrl = i.Product.ImageUrl,
+                    Price = i.Product.Price,
+                    Quantity = i.Quantity
+                }).ToList();
+            }
+
+            // Guest cart from session
+            var data = HttpContext.Session.GetString(SessionCartKey);
+            if (string.IsNullOrEmpty(data))
+                return new List<CartViewModel>();
+
+            return JsonConvert.DeserializeObject<List<CartViewModel>>(data)
+                   ?? new List<CartViewModel>();
+        }
+
+        //public async Task<List<CartViewModel>> GetUserCartAsync()
         //{
-        //    _httpContextAccessor.HttpContext.Session.Remove("cart");
-        //    return Task.CompletedTask;
+        //    // 🔹 If user logged in → return DB cart
+        //    if (IsUserLoggedIn())
+        //    {
+        //        var dbItems = await _context.CartItems
+        //            .Include(c => c.Product)
+        //            .Where(c => c.UserId == int.Parse(UserId))
+        //            .ToListAsync();
+
+        //        return dbItems.Select(i => new CartViewModel
+        //        {
+        //            ProductId = i.ProductId,
+        //            Name = i.Product!.Name,
+        //            Price = i.Product.Price,
+        //            Quantity = i.Quantity,
+        //            ImageUrl = i.Product.ImageUrl
+        //        }).ToList();
+        //    }
+
+        //    // 🔹 Guest user → return Session cart
+        //    var sessionData = HttpContext.Session.GetString(SessionCartKey);
+
+        //    if (string.IsNullOrEmpty(sessionData))
+        //        return new List<CartViewModel>();
+
+        //    return JsonConvert.DeserializeObject<List<CartViewModel>>(sessionData)
+        //           ?? new List<CartViewModel>();
+        //}
+        //public async Task ClearUserCartAsync()
+        //{
+        //    // Logged-in user → Clear DB cart
+        //    if (IsUserLoggedIn())
+        //    {
+        //        var items = _context.CartItems.Where(c => c.UserId == int.Parse(UserId));
+
+        //        if (items.Any())
+        //        {
+        //            _context.CartItems.RemoveRange(items);
+        //            await _context.SaveChangesAsync();
+        //        }
+
+        //        return;
+        //    }
+
+        //    // Guest → Clear session cart
+        //    HttpContext.Session.Remove(SessionCartKey);
         //}
 
     }

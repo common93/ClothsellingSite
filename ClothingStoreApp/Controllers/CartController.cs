@@ -1,6 +1,7 @@
 ﻿// Controllers/CartController.cs
 using ClothingStore.Core.Entities;
 using ClothingStore.Core.Interfaces;
+using ClothingStore.Infrastructure.Data;
 using ClothingStoreApp.Models;
 using ClothingStoreApp.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,13 @@ namespace ClothingStoreApp.Controllers
     {
         private readonly ICartService _cartService;
         private readonly IProductRepository _productRepo;
+        private readonly AppDbContext _context;
 
-        public CartController(ICartService cartService, IProductRepository productRepo)
+        public CartController(ICartService cartService, IProductRepository productRepo, AppDbContext context)
         {
             _cartService = cartService;
             _productRepo = productRepo;
+            _context = context;
         }
 
         public async Task<IActionResult> Index()
@@ -102,12 +105,95 @@ namespace ClothingStoreApp.Controllers
 
             return View(new CheckoutViewModel());
         }
-
-
-        public IActionResult Success(int id)
+        // =============================
+        //  CHECKOUT (POST)
+        // =============================
+        [HttpPost]
+        public async Task<IActionResult> Checkout(CheckoutViewModel model)
         {
-            ViewBag.OrderId = id;
-            return View();
+            // 1️⃣ Must Login Before Checkout
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["CheckoutError"] = "Please login to complete checkout.";
+                return RedirectToAction("Login", "Account", new { returnUrl = "/Cart/Checkout" });
+            }
+
+            // 2️⃣ Validate Model
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // 3️⃣ ALWAYS load cart using unified method
+            var cartItems = await _cartService.GetUserCartAsync();
+
+            if (cartItems == null || !cartItems.Any())
+                return RedirectToAction("Index", "Cart");
+
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+
+            try
+            {
+                // 4️⃣ Create Order
+                var order = new Order
+                {
+                    CustomerId = int.Parse(userId),
+                    CustomerName = model.CustomerName,
+                    Email = model.Email,
+                    Address = model.Address,
+                    PaymentMethod = model.PaymentMethod,
+                    OrderDate = DateTime.UtcNow,
+                    OrderStatus = OrderStatus.Pending,
+                    TotalAmount = cartItems.Sum(x => x.Price * x.Quantity)
+                };
+
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                // 5️⃣ Insert Order Items + Update Stock
+                foreach (var item in cartItems)
+                {
+                    var product = await _context.Products.FindAsync(item.ProductId);
+
+                    if (product == null)
+                        throw new Exception($"Product {item.ProductId} not found.");
+
+                    if (product.StockQuantity < item.Quantity)
+                        throw new Exception($"{product.Name} is out of stock.");
+
+                    product.StockQuantity -= item.Quantity;
+
+                    _context.OrderItems.Add(new OrderItem
+                    {
+                        OrderId = order.Id,
+                        ProductId = item.ProductId,
+                        ProductName = product.Name,
+                        ImageUrl = product.ImageUrl,
+                        Quantity = item.Quantity,
+                        Price = product.Price
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+
+                // 6️⃣ Clear cart with hybrid logic
+                await _cartService.ClearUserCartAsync();
+
+                await transaction.CommitAsync();
+
+                return RedirectToAction("Success", new { id = order.Id });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                Console.WriteLine("Checkout Error: " + ex.Message);
+
+                TempData["CheckoutError"] = "Something went wrong during checkout.";
+                return RedirectToAction("Index", "Cart");
+            }
         }
+
+
     }
 }

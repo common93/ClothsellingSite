@@ -15,5 +15,8 @@ namespace ClothingStoreApp.Services
         Task ClearCartAsync();
         Task<List<CartItem>> GetDbCartItemsAsync();
         Task MergeSessionCartToDbAsync();
+        Task<List<CartViewModel>> GetUserCartAsync();
+        Task ClearUserCartAsync();
+
     }
 }

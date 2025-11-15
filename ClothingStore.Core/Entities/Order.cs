@@ -6,6 +6,8 @@ namespace ClothingStore.Core.Entities
     public class Order
     {
         public int Id { get; set; }
+
+        public int CustomerId { get; set; } = 0;    
         public string CustomerName { get; set; } = "";
         public string Email { get; set; } = "";
         public string Address { get; set; } = "";
