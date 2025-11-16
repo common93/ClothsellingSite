@@ -1,17 +1,6 @@
-# Build folders
 bin/
 obj/
-
-# Visual Studio
 .vs/
-
-# Rider
-.idea/
-
-# Logs
-*.log
-
-# Cache
-*.pdb
 *.dll
+*.pdb
 *.cache
