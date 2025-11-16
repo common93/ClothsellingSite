@@ -66,11 +66,11 @@ namespace ClothingStoreApp.Controllers
             [HttpGet]
         public IActionResult Register(string returnUrl = "/")
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = returnUrl+ "Account/Login";
             return View();
         }
 
-        [HttpPost]
+            [HttpPost]
             public async Task<IActionResult> Register(string fullName, string email, string password ,string Role, string returnUrl = "/")
             {
                 var user = new ApplicationUser
@@ -85,7 +85,8 @@ namespace ClothingStoreApp.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, Role);
-                    return RedirectToAction("Login",returnUrl);
+                //return RedirectToAction("Login",returnUrl);
+                return Redirect(returnUrl);
                 }
 
                 ViewBag.Error = string.Join(", ", result.Errors.Select(e => e.Description));

@@ -17,16 +17,16 @@
         @foreach (var p in Model)
         {
             <tr>
-                <td>@p.Name</td>
-                <td>@p.Category</td>
-                <td>@p.Price.ToString("C")</td>
-                <td>@p.StockQuantity</td>
+                <td>@p.ProductName</td>
+                <td>@p.ProductCategory</td>
+                <td>@p.ProductPrice.ToString("C")</td>
+                <td>@p.ProductStockQuantity</td>
                 <td>
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
-                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@p.Id">Delete</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@p.ProductId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@p.ProductId">Delete</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Add"   asp-route-id="@p.Id">
+                    <a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Add" asp-route-id="@p.ProductId">
                         Add to Cart
                     </a>
                 </td>

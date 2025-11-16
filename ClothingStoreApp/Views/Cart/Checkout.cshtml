@@ -31,8 +31,8 @@
             @foreach (var item in cart)
             {
                 <div class="d-flex justify-content-between mb-2">
-                    <span>@item.Name x @item.Quantity</span>
-                    <span>₹@(item.Price* item.Quantity)</span>
+                    <span>@item.ProductName x @item.ProductQuantity</span>
+                    <span>₹@(item.ProductPrice* item.ProductQuantity)</span>
                 </div>
             }
 

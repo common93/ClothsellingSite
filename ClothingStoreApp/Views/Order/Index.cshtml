@@ -39,7 +39,7 @@
                     @foreach (var order in Model)
                     {
                         <tr>
-                            <td class="fw-bold">@order.Id</td>
+                            <td class="fw-bold">@order.OrderId</td>
                             <td>@order.OrderDate.ToString("MMM dd, yyyy hh:mm tt")</td>
                             <td>
                                 @if (order.OrderStatus == OrderStatus.Cancelled)
@@ -71,10 +71,10 @@
                                 @total.ToString("C")
                             </td>
                             <td class="text-end">
-                                <a asp-action="OrderDetails" asp-route-id="@order.Id" class="btn btn-sm btn-outline-dark">
+                                <a asp-action="OrderDetails" asp-route-id="@order.OrderId" class="btn btn-sm btn-outline-dark">
                                     <i class="bi bi-eye"></i> View
                                 </a>
-                                <a asp-action="Invoice" asp-route-id="@order.Id" class="btn btn-sm btn-outline-secondary">
+                                <a asp-action="Invoice" asp-route-id="@order.OrderId" class="btn btn-sm btn-outline-secondary">
                                     <i class="bi bi-file-earmark-arrow-down"></i>
                                 </a>
                             </td>

@@ -31,7 +31,7 @@ namespace ClothingStoreApp.Services
             HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         public bool IsUserLoggedIn() =>
-            !string.IsNullOrEmpty(UserId);
+            !string.IsNullOrEmpty(HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
 
         // =====================================================
@@ -58,7 +58,7 @@ namespace ClothingStoreApp.Services
         {
             return await _context.CartItems
                 .Include(p => p.Product)
-               // .Where(x => x.UserId == UserId)
+               .Where(x => x.Cart.UserId == UserId)
                 .ToListAsync();
         }
 
@@ -103,8 +103,8 @@ namespace ClothingStoreApp.Services
                     _context.CartItems.Add(new CartItem
                     {
                         ProductId = productId,
-                        Quantity = qty,
-                        UserId = int.Parse(UserId)
+                        Quantity = qty
+                   //     UserId = UserId
                     });
                 }
                 else
@@ -127,16 +127,16 @@ namespace ClothingStoreApp.Services
                 {
                     cart.Add(new CartViewModel
                     {
-                        ProductId = product.Id,
-                        Name = product.Name,
-                        Price = product.Price,
-                        Quantity = qty,
-                        ImageUrl = product.ImageUrl
+                        ProductId = product.ProductId,
+                        ProductName = product.ProductName,
+                        ProductPrice = product.ProductPrice,
+                        ProductQuantity = qty,
+                        ProductImageUrl = product.ProductImageUrl
                     });
                 }
                 else
                 {
-                    item.Quantity += qty;
+                    item.ProductQuantity += qty;
                 }
 
                 SaveSessionCart(cart);
@@ -218,8 +218,8 @@ namespace ClothingStoreApp.Services
 
                 if (item != null)
                 {
-                    item.Quantity -= 1;
-                    if (item.Quantity <= 0)
+                    item.ProductQuantity -= 1;
+                    if (item.ProductQuantity <= 0)
                         cart.Remove(item);
                 }
 
@@ -233,16 +233,16 @@ namespace ClothingStoreApp.Services
             {
                 var items = await _context.CartItems
                     .Include(i => i.Product)
-                    .Where(i => i.UserId == int.Parse(UserId))
+                    .Where(i => i.Cart.UserId == UserId)
                     .ToListAsync();
 
                 return items.Select(i => new CartViewModel
                 {
                     ProductId = i.ProductId,
-                    Name = i.Product.Name,
-                    ImageUrl = i.Product.ImageUrl,
-                    Price = i.Product.Price,
-                    Quantity = i.Quantity
+                    ProductName = i.Product.ProductName,
+                    ProductImageUrl = i.Product.ProductImageUrl,
+                    ProductPrice = i.Product.ProductPrice,
+                    ProductQuantity = i.Quantity
                 }).ToList();
             }
 

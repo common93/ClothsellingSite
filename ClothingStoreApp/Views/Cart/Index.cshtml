@@ -40,22 +40,22 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="@item.ImageUrl" style="width:65px;height:65px;object-fit:cover;border-radius:5px;" />
-                                    <span class="ms-3 fw-semibold">@item.Name</span>
+                                    <img src="@item.ProductImageUrl" style="width:65px;height:65px;object-fit:cover;border-radius:5px;" />
+                                    <span class="ms-3 fw-semibold">@item.ProductName</span>
                                 </div>
                             </td>
 
-                            <td>₹@item.Price</td>
+                            <td>₹@item.ProductPrice</td>
 
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <a class="btn btn-sm btn-outline-dark" asp-action="Decrease" asp-route-id="@item.ProductId">−</a>
-                                    <span class="fw-bold">@item.Quantity</span>
+                                    <span class="fw-bold">@item.ProductQuantity</span>
                                     <a class="btn btn-sm btn-outline-dark" asp-action="Increase" asp-route-id="@item.ProductId">+</a>
                                 </div>
                             </td>
 
-                            <td>₹@(item.Price* item.Quantity)</td>
+                            <td>₹@(item.ProductPrice* item.ProductQuantity)</td>
 
                             <td>
                                 <a class="btn btn-danger btn-sm w-100"
@@ -75,12 +75,12 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="@item.Product.ImageUrl" style="width:65px;height:65px;object-fit:cover;border-radius:5px;" />
-                                    <span class="ms-3 fw-semibold">@item.Product.Name</span>
+                                    <img src="@item.Product.ProductImageUrl" style="width:65px;height:65px;object-fit:cover;border-radius:5px;" />
+                                    <span class="ms-3 fw-semibold">@item.Product.ProductName</span>
                                 </div>
                             </td>
 
-                            <td>₹@item.Product.Price</td>
+                            <td>₹@item.Product.ProductPrice</td>
 
                             <td>
                                 <div class="d-flex align-items-center gap-2">
@@ -90,7 +90,7 @@
                                 </div>
                             </td>
 
-                            <td>₹@(item.Product.Price* item.Quantity)</td>
+                            <td>₹@(item.Product.ProductPrice* item.Quantity)</td>
 
                             <td>
                                 <a class="btn btn-danger btn-sm w-100"

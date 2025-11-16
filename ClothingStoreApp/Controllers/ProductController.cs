@@ -36,20 +36,20 @@ namespace ClothingStoreApp.Controllers
 
             // ✅ Category Filter
             if (!string.IsNullOrEmpty(category))
-                products = products.Where(p => p.Category.ToLower() == category.ToLower());
+                products = products.Where(p => p.ProductCategory.ToLower() == category.ToLower());
 
             // ✅ Search Filter
             if (!string.IsNullOrEmpty(search))
                 products = products.Where(p =>
-                    p.Name.Contains(search) ||
-                    p.Description.Contains(search) ||
-                    p.Category.Contains(search)
+                    p.ProductName.Contains(search) ||
+                    p.ProductDescription.Contains(search) ||
+                    p.ProductCategory.Contains(search)
                 );
 
             // ✅ Pagination logic
             var totalItems = await products.CountAsync();
             var data = await products
-                .OrderBy(p => p.Name)
+                .OrderBy(p => p.ProductName)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -68,14 +68,14 @@ namespace ClothingStoreApp.Controllers
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(category))
-                query = query.Where(p => p.Category.ToLower() == category.ToLower());
+                query = query.Where(p => p.ProductCategory.ToLower() == category.ToLower());
 
             if (!string.IsNullOrEmpty(search))
-                query = query.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
+                query = query.Where(p => p.ProductName.Contains(search) || p.ProductDescription.Contains(search));
 
             var totalItems = await query.CountAsync();
             var products = await query
-                .OrderBy(p => p.Name)
+                .OrderBy(p => p.ProductName)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -99,18 +99,18 @@ namespace ClothingStoreApp.Controllers
 
             // ✅ Category Filter
             if (!string.IsNullOrEmpty(category))
-                allProducts = allProducts.Where(p => p.Category.ToLower() == category.ToLower());
+                allProducts = allProducts.Where(p => p.ProductCategory.ToLower() == category.ToLower());
 
             // ✅ Search Filter
             if (!string.IsNullOrEmpty(search))
                 allProducts = allProducts.Where(p =>
-                    p.Name.Contains(search) ||
-                    p.Description.Contains(search) ||
-                    p.Category.Contains(search)
+                    p.ProductName.Contains(search) ||
+                    p.ProductDescription.Contains(search) ||
+                    p.ProductCategory.Contains(search)
                 );
 
             var products = allProducts
-                            .OrderBy(x => x.Id)
+                            .OrderBy(x => x.ProductId)
                             .Skip((page - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
@@ -167,13 +167,13 @@ namespace ClothingStoreApp.Controllers
 
             var product = new Product
             {
-                Name = model.Name,
-                Description = model.Description,
-                Price = model.Price,
-                Category = model.Category,
-                StockQuantity = model.StockQuantity,
+                ProductName = model.Name,
+                ProductDescription = model.Description,
+                ProductPrice = model.Price,
+                ProductCategory = model.Category,
+                ProductStockQuantity = model.StockQuantity,
                 //ImageUrl = model.ImageUrl,
-                ImageUrl = imagePath
+                ProductImageUrl = imagePath
             };
 
             _context.Products.Add(product);
@@ -192,13 +192,13 @@ namespace ClothingStoreApp.Controllers
 
             var vm = new ProductViewModel
             {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                Category = product.Category,
-                StockQuantity = product.StockQuantity,
-                ImageUrl = product.ImageUrl
+                Id = product.ProductId,
+                Name = product.ProductName,
+                Description = product.ProductDescription,
+                Price = product.ProductPrice,
+                Category = product.ProductCategory,
+                StockQuantity = product.ProductStockQuantity,
+                ImageUrl = product.ProductImageUrl
             };
 
             return View(vm);
@@ -234,12 +234,12 @@ namespace ClothingStoreApp.Controllers
                 if (imagePath == null)
                     imagePath = "";
 
-                product.Name = model.Name;
-                product.Description = model.Description;
-                product.Price = model.Price;
-                product.Category = model.Category;
-                product.StockQuantity = model.StockQuantity;
-                product.ImageUrl = imagePath;
+                product.ProductName = model.Name;
+                product.ProductDescription = model.Description;
+                product.ProductPrice = model.Price;
+                product.ProductCategory = model.Category;
+                product.ProductStockQuantity = model.StockQuantity;
+                product.ProductImageUrl = imagePath;
 
                 await _repo.UpdateAsync(product);
 

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClothingStore.Core.Entities
 {
     public class Order
     {
-        public int Id { get; set; }
-
-        public int CustomerId { get; set; } = 0;    
+        [Key]
+        public string OrderId { get; set; } = Guid.NewGuid().ToString();
+        public string CustomerId { get; set; } = "";    
         public string CustomerName { get; set; } = "";
         public string Email { get; set; } = "";
         public string Address { get; set; } = "";

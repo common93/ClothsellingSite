@@ -30,15 +30,15 @@
         {
             <div class="product-card">
                 <div class="product-img-wrapper">
-                    <img src="@p.ImageUrl" alt="@p.Name" />
+                    <img src="@p.ProductImageUrl" alt="@p.ProductName" />
                 </div>
 
                 <div class="product-info">
-                    <h6 class="fw-bold">@p.Name</h6>
-                    <p class="text-muted">₹@p.Price</p>
+                    <h6 class="fw-bold">@p.ProductName</h6>
+                    <p class="text-muted">₹@p.ProductPrice</p>
 
-                    <a href="/Product/Details/@p.Id" class="btn btn-outline-dark btn-sm w-100 mb-2">View</a>
-                    <a href="/Cart/Add/@p.Id" class="btn btn-dark btn-sm w-100">Add To Cart</a>
+                    <a href="/Product/Details/@p.ProductId" class="btn btn-outline-dark btn-sm w-100 mb-2">View</a>
+                    <a href="/Cart/Add/@p.ProductId" class="btn btn-dark btn-sm w-100">Add To Cart</a>
                 </div>
             </div>
 

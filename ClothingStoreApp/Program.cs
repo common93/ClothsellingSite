@@ -97,25 +97,25 @@ using (var scope = app.Services.CreateScope())
 
         var sampleProducts = new List<ClothingStore.Core.Entities.Product>
         {
-            new ClothingStore.Core.Entities.Product { Name = "T-Shirt", Category = "Men", Price = 499, StockQuantity = 50 },
-            new ClothingStore.Core.Entities.Product { Name = "Dress", Category = "Women", Price = 899, StockQuantity = 30 },
-            new ClothingStore.Core.Entities.Product { Name = "Jeans", Category = "Men", Price = 1199, StockQuantity = 40 },
-            new ClothingStore.Core.Entities.Product { Name = "Blouse", Category = "Women", Price = 799, StockQuantity = 25 },
-            new ClothingStore.Core.Entities.Product { Name = "Jacket", Category = "Unisex", Price = 1499, StockQuantity = 15 },
-            new ClothingStore.Core.Entities.Product { Name = "Sweater", Category = "Women", Price = 999, StockQuantity = 35 },
-            new ClothingStore.Core.Entities.Product { Name = "Shorts", Category = "Men", Price = 599, StockQuantity = 45 },
-            new ClothingStore.Core.Entities.Product { Name = "Skirt", Category = "Women", Price = 699, StockQuantity = 28 },
-            new ClothingStore.Core.Entities.Product { Name = "Hoodie", Category = "Unisex", Price = 1299, StockQuantity = 20 },
-            new ClothingStore.Core.Entities.Product { Name = "Socks", Category = "Unisex", Price = 199, StockQuantity = 100 },
-            new ClothingStore.Core.Entities.Product { Name = "Cap", Category = "Unisex", Price = 299, StockQuantity = 60 },
-            new ClothingStore.Core.Entities.Product { Name = "Polo Shirt", Category = "Men", Price = 799, StockQuantity = 38 }
+            new ClothingStore.Core.Entities.Product { ProductName = "T-Shirt", ProductCategory = "Men", ProductPrice = 499, ProductStockQuantity = 50 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Dress", ProductCategory = "Women", ProductPrice = 899, ProductStockQuantity = 30 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Jeans",   ProductCategory = "Men", ProductPrice = 1199, ProductStockQuantity = 40 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Blouse", ProductCategory = "Women", ProductPrice = 799, ProductStockQuantity = 25 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Jacket", ProductCategory = "Unisex", ProductPrice = 1499, ProductStockQuantity = 15 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Sweater", ProductCategory = "Women", ProductPrice = 999, ProductStockQuantity = 35 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Shorts", ProductCategory = "Men", ProductPrice = 599, ProductStockQuantity = 45 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Skirt", ProductCategory = "Women", ProductPrice = 699, ProductStockQuantity = 28 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Hoodie", ProductCategory = "Unisex", ProductPrice = 1299, ProductStockQuantity = 20 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Socks", ProductCategory = "Unisex", ProductPrice = 199, ProductStockQuantity = 100 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Cap", ProductCategory = "Unisex", ProductPrice = 299, ProductStockQuantity = 60 },
+            new ClothingStore.Core.Entities.Product { ProductName = "Polo Shirt", ProductCategory = "Men", ProductPrice = 799, ProductStockQuantity = 38 }
         };
 
         // Optional: Add some random variation to price and stock
         foreach (var p in sampleProducts)
         {
-            p.Price += random.Next(-100, 101); // +/- 100 price variation
-            p.StockQuantity += random.Next(-5, 6); // +/- 5 stock variation
+            p.ProductPrice += random.Next(-100, 101); // +/- 100 price variation
+            p.ProductStockQuantity += random.Next(-5, 6); // +/- 5 stock variation
         }
 
         context.Products.AddRange(sampleProducts);

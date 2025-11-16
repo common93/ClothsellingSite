@@ -18,7 +18,7 @@ namespace ClothingStore.Infrastructure.Data
             => await _context.Products.ToListAsync();
 
         public async Task<Product> GetByIdAsync(int id)
-            => await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            => await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
 
         public async Task AddAsync(Product product)
         {
@@ -52,7 +52,7 @@ namespace ClothingStore.Infrastructure.Data
         public async Task<List<Product>> GetPagedAsync(int page, int pageSize)
         {
             return await _context.Products
-                .OrderBy(p => p.Id)
+                .OrderBy(p => p.ProductId)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

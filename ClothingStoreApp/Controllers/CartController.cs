@@ -2,6 +2,7 @@
 using ClothingStore.Core.Entities;
 using ClothingStore.Core.Interfaces;
 using ClothingStore.Infrastructure.Data;
+using ClothingStore.Infrastructure.Migrations;
 using ClothingStoreApp.Models;
 using ClothingStoreApp.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -95,13 +96,13 @@ namespace ClothingStoreApp.Controllers
             ViewBag.Cart = dbCart.Select(x => new CartViewModel
             {
                 ProductId = x.ProductId,
-                Name = x.Product.Name,
-                Price = x.Product.Price,
-                Quantity = x.Quantity,
-                ImageUrl = x.Product.ImageUrl
+                ProductName = x.Product.ProductName,
+                ProductPrice = x.Product.ProductPrice,
+                ProductQuantity = x.Quantity,
+                ProductImageUrl = x.Product.ProductImageUrl
             }).ToList();
 
-            ViewBag.Total = dbCart.Sum(x => x.Product.Price * x.Quantity);
+            ViewBag.Total = dbCart.Sum(x => x.Product.ProductPrice * x.Quantity);
 
             return View(new CheckoutViewModel());
         }
@@ -137,19 +138,25 @@ namespace ClothingStoreApp.Controllers
             {
                 // 4️⃣ Create Order
                 var order = new Order
-                {
-                    CustomerId = int.Parse(userId),
+                {  
+                    CustomerId = userId,
                     CustomerName = model.CustomerName,
                     Email = model.Email,
                     Address = model.Address,
                     PaymentMethod = model.PaymentMethod,
                     OrderDate = DateTime.UtcNow,
                     OrderStatus = OrderStatus.Pending,
-                    TotalAmount = cartItems.Sum(x => x.Price * x.Quantity)
+                    TotalAmount = cartItems.Sum(x => x.ProductPrice * x.ProductQuantity)
                 };
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
+
+                var orderId = _context.Orders
+               .Where(o => o.CustomerId == userId)
+               .OrderByDescending(o => o.OrderDate)
+               .Select(o => o.OrderId)
+               .FirstOrDefault();
 
                 // 5️⃣ Insert Order Items + Update Stock
                 foreach (var item in cartItems)
@@ -159,19 +166,19 @@ namespace ClothingStoreApp.Controllers
                     if (product == null)
                         throw new Exception($"Product {item.ProductId} not found.");
 
-                    if (product.StockQuantity < item.Quantity)
-                        throw new Exception($"{product.Name} is out of stock.");
+                    if (product.ProductStockQuantity < item.ProductQuantity)
+                        throw new Exception($"{product.ProductName} is out of stock.");
 
-                    product.StockQuantity -= item.Quantity;
+                    product.ProductStockQuantity -= item.ProductQuantity;
 
                     _context.OrderItems.Add(new OrderItem
                     {
-                        OrderId = order.Id,
+                        OrderId = orderId,
                         ProductId = item.ProductId,
-                        ProductName = product.Name,
-                        ImageUrl = product.ImageUrl,
-                        Quantity = item.Quantity,
-                        Price = product.Price
+                        ProductName = product.ProductName,
+                        ImageUrl = product.ProductImageUrl,
+                        Quantity = item.ProductQuantity,
+                        Price = product.ProductPrice
                     });
                 }
 
@@ -182,7 +189,7 @@ namespace ClothingStoreApp.Controllers
 
                 await transaction.CommitAsync();
 
-                return RedirectToAction("Success", new { id = order.Id });
+                return RedirectToAction("Success", new { OrderId = orderId });
             }
             catch (Exception ex)
             {
@@ -194,6 +201,14 @@ namespace ClothingStoreApp.Controllers
             }
         }
 
-
+        public async Task<IActionResult> Success(string OrderId)
+        {
+            var order = await _context.Orders.FindAsync(OrderId);
+            ViewBag.OrderId = OrderId;
+            //if (order == null || order.OrderId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+             //   return NotFound();
+           // return View(order);
+            return View();
+        }
     }
 }

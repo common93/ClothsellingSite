@@ -4,9 +4,9 @@ namespace ClothingStore.Core.Entities
 {
     public class OrderItem
     {
-        public int Id { get; set; }
-
-        public int OrderId { get; set; }
+        [Key]
+        public string OrdOrderItemIderId { get; set; } = Guid.NewGuid().ToString();
+        public string OrderId { get; set; }
         public Order Order { get; set; }   // ✅ Required navigation
 
         public int ProductId { get; set; }

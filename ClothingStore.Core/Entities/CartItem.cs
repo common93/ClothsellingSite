@@ -25,7 +25,7 @@ namespace ClothingStore.Core.Entities
         [Required]
         public int CartId { get; set; }
 
-        public int UserId { get; set; }
+   //     public string UserId { get; set; }
 
         [ForeignKey(nameof(CartId))]
         public Cart Cart { get; set; }

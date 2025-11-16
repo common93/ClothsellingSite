@@ -4,7 +4,7 @@
 
 <div class="card mb-4">
     <div class="card-body">
-        <h5 class="fw-bold">Order #@Model.Id</h5>
+        <h5 class="fw-bold">Order #@Model.OrderId</h5>
         <p><b>Name:</b> @Model.CustomerName</p>
         <p><b>Email:</b> @Model.Email</p>
         <p><b>Address:</b> @Model.Address</p>
@@ -39,7 +39,7 @@
         }
     </tbody>
 </table>
-<a asp-action="Invoice" asp-route-id="@Model.Id" class="btn btn-outline-dark mt-3">
+<a asp-action="Invoice" asp-route-id="@Model.OrderId" class="btn btn-outline-dark mt-3">
     📄 Download Invoice
 </a>
 

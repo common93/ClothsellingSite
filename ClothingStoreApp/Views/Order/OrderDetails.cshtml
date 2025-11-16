@@ -2,7 +2,7 @@
 @model ClothingStore.Core.Entities.Order
 
 @{
-    ViewData["Title"] = $"Order #{Model.Id}";
+    ViewData["Title"] = $"Order #{Model.OrderId}";
 }
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -62,8 +62,8 @@
 
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold">Order #@Model.Id</h3>
-        <a asp-action="Invoice" asp-route-id="@Model.Id" class="btn btn-dark">
+        <h3 class="fw-bold">Order #@Model.OrderId</h3>
+        <a asp-action="Invoice" asp-route-id="@Model.OrderId" class="btn btn-dark">
             <i class="bi bi-file-earmark-arrow-down"></i> Download Invoice
         </a>
     </div>

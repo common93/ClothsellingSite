@@ -8,8 +8,8 @@ namespace ClothingStoreApp.Models
         public List<CartItem>? DbCart { get; set; }
 
         public decimal Total =>
-            (SessionCart?.Sum(x => x.Price * x.Quantity) ?? 0) +
-            (DbCart?.Sum(x => x.Product.Price * x.Quantity) ?? 0);
+            (SessionCart?.Sum(x => x.ProductPrice * x.ProductQuantity) ?? 0) +
+            (DbCart?.Sum(x => x.Product.ProductPrice * x.Quantity) ?? 0);
 
         public bool IsEmpty =>
             (SessionCart == null || !SessionCart.Any()) &&

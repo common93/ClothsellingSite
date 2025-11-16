@@ -18,7 +18,7 @@
         @foreach (var order in Model)
         {
             <tr>
-                <td>@order.Id</td>
+                <td>@order.OrderId</td>
                 <td>@order.CustomerName</td>
                 <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
                 <td>₹@order.TotalAmount</td>
@@ -35,27 +35,27 @@
             <td>
                 @if (order.OrderStatus == OrderStatus.Pending)
                     {
-                        <form method="post" asp-action="Approve" asp-route-id="@order.Id" class="d-inline">
+                        <form method="post" asp-action="Approve" asp-route-id="@order.OrderId" class="d-inline">
                             <button class="btn btn-sm btn-primary">Approve</button>
                         </form>
                     }
 
                     @if (order.OrderStatus == OrderStatus.Approved)
                     {
-                        <form method="post" asp-action="Ship" asp-route-id="@order.Id" class="d-inline">
+                        <form method="post" asp-action="Ship" asp-route-id="@order.OrderId" class="d-inline">
                             <button class="btn btn-sm btn-success">Mark Shipped</button>
                         </form>
                     }
 
                     @if (order.OrderStatus != OrderStatus.Cancelled)
                     {
-                        <form method="post" asp-action="Cancel" asp-route-id="@order.Id" class="d-inline">
+                        <form method="post" asp-action="Cancel" asp-route-id="@order.OrderId" class="d-inline">
                             <button class="btn btn-sm btn-danger">Cancel</button>
                         </form>
                     }
 
                     <a class="btn btn-sm btn-outline-dark"
-                       asp-action="Invoice" asp-route-id="@order.Id">
+                       asp-action="Invoice" asp-route-id="@order.OrderId">
                         Invoice
                     </a>
                 </td>

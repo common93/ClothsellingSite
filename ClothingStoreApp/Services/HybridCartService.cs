@@ -51,10 +51,11 @@ namespace ClothingStoreApp.Services
         // -------- DB helpers --------
         private async Task<Cart> GetOrCreateDbCartAsync(string userId)
         {
-            var cart = await _db.Carts
-                        .Include(c => c.Items)
-                        .ThenInclude(i => i.Product)
-                        .FirstOrDefaultAsync(c => c.UserId == userId);
+            var cart = await _db.Carts.Include(c => c.Items).
+                   ThenInclude(i => i.Product).FirstOrDefaultAsync(c => c.UserId == userId);
+                        //.Include(c => c.Items)
+                        //.ThenInclude(i => i.Product)
+                        //.FirstOrDefaultAsync(c => c.UserId == userId);
 
             if (cart == null)
             {
@@ -71,7 +72,8 @@ namespace ClothingStoreApp.Services
         // Adds either to DB (if logged in) or session (if guest)
         public async Task AddToCartAsync(int productId, int quantity = 1)
         {
-            var userId = GetUserId();
+           // var userId = GetUserId();
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!string.IsNullOrEmpty(userId))
             {
                 var cart = await GetOrCreateDbCartAsync(userId);
@@ -80,7 +82,13 @@ namespace ClothingStoreApp.Services
                 {
                     var product = await _productRepo.GetByIdAsync(productId);
                     // Avoid null (should validate caller)
-                    cart.Items.Add(new CartItem { ProductId = productId, Quantity = quantity });
+                    cart.Items.Add(new CartItem
+                    {
+                        ProductId = productId,
+                        Quantity = quantity
+                        //UserId = userId    // 🔥 REQUIRED
+                    });
+
                 }
                 else
                 {
@@ -98,15 +106,15 @@ namespace ClothingStoreApp.Services
                     cart.Add(new CartViewModel
                     {
                         ProductId = productId,
-                        Name = product?.Name,
-                        ImageUrl = product?.ImageUrl,
-                        Price = product?.Price ?? 0,
-                        Quantity = quantity
+                        ProductName = product?.ProductName,
+                        ProductImageUrl = product?.ProductImageUrl,
+                        ProductPrice = product?.ProductPrice ?? 0,
+                        ProductQuantity = quantity
                     });
                 }
                 else
                 {
-                    itm.Quantity += quantity;
+                    itm.ProductQuantity += quantity;
                 }
                 await SaveSessionCartAsync(cart);
             }
@@ -146,7 +154,7 @@ namespace ClothingStoreApp.Services
             {
                 var cart = await GetSessionCartAsync();
                 var itm = cart.FirstOrDefault(i => i.ProductId == productId);
-                if (itm != null) { itm.Quantity++; await SaveSessionCartAsync(cart); }
+                if (itm != null) { itm.ProductQuantity++; await SaveSessionCartAsync(cart); }
             }
         }
 
@@ -170,8 +178,8 @@ namespace ClothingStoreApp.Services
                 var itm = cart.FirstOrDefault(i => i.ProductId == productId);
                 if (itm != null)
                 {
-                    itm.Quantity--;
-                    if (itm.Quantity <= 0) cart.Remove(itm);
+                    itm.ProductQuantity--;
+                    if (itm.ProductQuantity <= 0) cart.Remove(itm);
                     await SaveSessionCartAsync(cart);
                 }
             }
@@ -195,11 +203,12 @@ namespace ClothingStoreApp.Services
         // Return DB cart items (for logged-in users)
         public async Task<List<CartItem>> GetDbCartItemsAsync()
         {
-            var userId = GetUserId();
+            //var userId = GetUserId();
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId)) return new List<CartItem>();
             var cart = await GetOrCreateDbCartAsync(userId);
             return cart.Items.ToList();
-        }
+        }  
 
         // Merge session cart -> DB cart (call this after login)
         public async Task MergeSessionCartToDbAsync()
@@ -220,12 +229,12 @@ namespace ClothingStoreApp.Services
                     dbCart.Items.Add(new CartItem
                     {
                         ProductId = s.ProductId,
-                        Quantity = s.Quantity
+                        Quantity = s.ProductQuantity
                     });
                 }
                 else
                 {
-                    existing.Quantity += s.Quantity;
+                    existing.Quantity += s.ProductQuantity;
                 }
             }
 
@@ -246,10 +255,10 @@ namespace ClothingStoreApp.Services
                 return dbItems.Select(x => new CartViewModel
                 {
                     ProductId = x.ProductId,
-                    Name = x.Product.Name,
-                    Price = x.Product.Price,
-                    Quantity = x.Quantity,
-                    ImageUrl = x.Product.ImageUrl
+                    ProductName = x.Product.ProductName,
+                    ProductPrice = x.Product.ProductPrice,
+                    ProductQuantity = x.Quantity,
+                    ProductImageUrl = x.Product.ProductImageUrl
                 }).ToList();
             }
             else
@@ -259,10 +268,11 @@ namespace ClothingStoreApp.Services
         }
         public async Task ClearUserCartAsync()
         {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             // Logged-in user → Clear DB cart
             if (IsUserLoggedIn())
             {
-                var items = _db.CartItems.Where(c => c.UserId == int.Parse(GetUserId()));
+                var items = _db.CartItems.Where(c => c.Cart.UserId == userId);
 
                 if (items.Any())
                 {

@@ -13,21 +13,11 @@ public class OrderController : Controller
     {
         _context = context;
     }
-    //public async Task<IActionResult> Index()
-    //{
-    //    var orders = await _context.Orders
-    //        .Include(o => o.Items)
-    //        .OrderByDescending(o => o.OrderDate)
-    //        .ToListAsync();
-
-    //    return View(orders); // ✅ Return model
-    //}
-
-    public async Task<IActionResult> OrderDetails(int id)
+    public async Task<IActionResult> OrderDetails(string id)
     {
         var order = await _context.Orders
             .Include(o => o.Items)
-            .FirstOrDefaultAsync(o => o.Id == id);
+            .FirstOrDefaultAsync(o => o.OrderId == id);
 
         if (order == null)
             return NotFound();
@@ -98,19 +88,12 @@ public class OrderController : Controller
         return RedirectToAction("OrderDetails", new { id });
     }
 
-
-    //// ✅ Invoice
-    //[HttpGet("Invoice/{id}")]
-    //public async Task<IActionResult> Invoice(int id)
-    //{
-    //    return RedirectToAction("Invoice", "Order", new { id });
-    //}
     [HttpGet("Invoice/{id}")]
-    public async Task<IActionResult> Invoice(int id)
+    public async Task<IActionResult> Invoice(string id)
     {
         var order = await _context.Orders
             .Include(o => o.Items)
-            .FirstOrDefaultAsync(o => o.Id == id);
+            .FirstOrDefaultAsync(o => o.OrderId == id);
 
         if (order == null)
             return NotFound();
@@ -137,7 +120,7 @@ public class OrderController : Controller
             infoTable.WidthPercentage = 100;
             infoTable.DefaultCell.Border = 0;
 
-            infoTable.AddCell(new Phrase($"Order ID: #{order.Id}", normalFont));
+            infoTable.AddCell(new Phrase($"Order ID: #{order.OrderId}", normalFont));
             infoTable.AddCell(new Phrase($"Order Date: {order.OrderDate:dd MMM yyyy}", normalFont));
             infoTable.AddCell(new Phrase($"Customer: {order.CustomerName}", normalFont));
             infoTable.AddCell(new Phrase($"Payment: {order.PaymentMethod}", normalFont));
@@ -215,7 +198,7 @@ public class OrderController : Controller
 
             pdfDoc.Close();
 
-            return File(stream.ToArray(), "application/pdf", $"Invoice_Order_{order.Id}.pdf");
+            return File(stream.ToArray(), "application/pdf", $"Invoice_Order_{order.OrderId}.pdf");
         }
     }
 

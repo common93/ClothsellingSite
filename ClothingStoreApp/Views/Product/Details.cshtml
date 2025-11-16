@@ -1,6 +1,6 @@
 ﻿@model ClothingStore.Core.Entities.Product
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.ProductName;
 }
 
 <div class="container mt-5">
@@ -8,7 +8,7 @@
     <div class="row">
         <!-- Product Image -->
         <div class="col-md-5 text-center">
-            <img src="@Model.ImageUrl" alt="@Model.Name"
+            <img src="@Model.ProductImageUrl" alt="@Model.ProductName"
                  class="img-fluid rounded shadow"
                  style="max-height:350px; object-fit:cover;">
         </div>
@@ -16,19 +16,19 @@
         <!-- Product Info -->
         <div class="col-md-7">
 
-            <h2 class="fw-bold">@Model.Name</h2>
+            <h2 class="fw-bold">@Model.ProductName</h2>
 
-            <p class="text-muted">@Model.Description</p>
+            <p class="text-muted">@Model.ProductDescription</p>
 
-            <h4 class="text-danger fw-bold mb-3">₹@Model.Price</h4>
+            <h4 class="text-danger fw-bold mb-3">₹@Model.ProductPrice</h4>
 
-            <p><strong>Category:</strong> @Model.Category</p>
+            <p><strong>Category:</strong> @Model.ProductCategory</p>
 
             <p>
                 <strong>Stock:</strong>
-                @if (Model.StockQuantity > 0)
+                @if (Model.ProductStockQuantity > 0)
                 {
-                    <span class="text-success">In Stock (@Model.StockQuantity)</span>
+                    <span class="text-success">In Stock (@Model.ProductStockQuantity)</span>
                 }
                 else
                 {
@@ -36,7 +36,7 @@
                 }
             </p>
 
-            <a href="/Cart/Add/@Model.Id" class="btn btn-dark btn-lg mt-3">
+            <a href="/Cart/Add/@Model.ProductId" class="btn btn-dark btn-lg mt-3">
                 <i class="bi bi-cart"></i> Add to Cart
             </a>
 

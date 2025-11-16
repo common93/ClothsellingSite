@@ -31,14 +31,14 @@
         @foreach(var p in Model)
         {
             <tr>
-                <td><img src="@p.ImageUrl" style="width:60px; height:60px; object-fit:cover;" /></td>
-                <td>@p.Name</td>
-                <td>@p.Category</td>
-                <td>@p.Price</td>
-                <td>@p.StockQuantity</td>
+                <td><img src="@p.ProductImageUrl" style="width:60px; height:60px; object-fit:cover;" /></td>
+                <td>@p.ProductName</td>
+                <td>@p.ProductCategory</td>
+                <td>@p.ProductPrice</td>
+                <td>@p.ProductStockQuantity</td>
                 <td>
-                    <a href="/Dashboard/Product/Edit/@p.Id" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="/Dashboard/Product/Delete/@p.Id" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/Dashboard/Product/Edit/@p.ProductId" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="/Dashboard/Product/Delete/@p.ProductId" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }
