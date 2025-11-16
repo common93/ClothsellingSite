@@ -1,7 +1,6 @@
-.vs/ 
-*.user 
-*.suo 
-*.vs 
-bin/ 
-obj/ 
-ClothingStoreApp/.vs/ 
+bin/
+obj/
+.vs/
+*.dll
+*.pdb
+
