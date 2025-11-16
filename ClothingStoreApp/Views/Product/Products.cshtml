@@ -25,28 +25,12 @@
 
     <h2 class="fw-bold mb-3">All Products</h2>
 
-    <div class="products-grid">
-        @foreach (var p in Model.Products)
-        {
-            <div class="product-card">
-                <div class="product-img-wrapper">
-                    <img src="@p.ProductImageUrl" alt="@p.ProductName" />
-                </div>
-
-                <div class="product-info">
-                    <h6 class="fw-bold">@p.ProductName</h6>
-                    <p class="text-muted">₹@p.ProductPrice</p>
-
-                    <a href="/Product/Details/@p.ProductId" class="btn btn-outline-dark btn-sm w-100 mb-2">View</a>
-                    <a href="/Cart/Add/@p.ProductId" class="btn btn-dark btn-sm w-100">Add To Cart</a>
-                </div>
-            </div>
-
-        }
+    <div id="product-container">
+        @await Html.PartialAsync("~/Views/Product/_ProductsPartial.cshtml", Model)
     </div>
 
     <!-- Pagination -->
-    <nav class="mt-4">
+@*     <nav class="mt-4">
         <ul class="pagination justify-content-center">
 
             @if (Model.CurrentPage > 1)
@@ -70,6 +54,6 @@
                 </li>
             }
         </ul>
-    </nav>
+    </nav> *@
 
 </div>
