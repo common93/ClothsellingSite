@@ -8,14 +8,14 @@ namespace ClothingStore.Core.Entities
     {
         [Key]
         public string OrderId { get; set; } = Guid.NewGuid().ToString();
-        public string CustomerId { get; set; } = "";    
+        public string CustomerId { get; set; } = "";
         public string CustomerName { get; set; } = "";
         public string Email { get; set; } = "";
         public string Address { get; set; } = "";
 
         public string PaymentMethod { get; set; } = "";
 
-       // public string OrderStatus { get; set; } = "";
+        // public string OrderStatus { get; set; } = "";
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public DateTime? ApprovedAt { get; set; }
@@ -24,9 +24,14 @@ namespace ClothingStore.Core.Entities
         public DateTime? CancelledAt { get; set; }
 
 
+        public string RazorpayOrderId { get; set; } = "";     // returned during order creation
+        public string RazorpayPaymentId { get; set; } = "";   // returned after payment
+        public string PaymentId { get; set; }
+        public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
+        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
+
         public decimal TotalAmount { get; set; }
 
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public List<OrderItem> Items { get; set; } = new();
     }
 }

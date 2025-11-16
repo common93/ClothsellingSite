@@ -28,6 +28,8 @@ builder.Services.AddHttpContextAccessor();
 //builder.Services.AddScoped<CartService>();
 
 builder.Services.AddScoped<ICartService, HybridCartService>();
+builder.Services.AddSingleton<RazorpayService>();
+
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()

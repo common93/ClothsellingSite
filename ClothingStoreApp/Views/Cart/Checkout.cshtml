@@ -68,26 +68,31 @@
                     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="COD" checked>
                     <label class="form-check-label fw-semibold">Cash on Delivery (COD)</label>
                 </div>
-
                 <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="UPI">
-                    <label class="form-check-label fw-semibold">UPI / Google Pay / PhonePe</label>
+                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Online"
+                           id="pmOnline">
+                    <label class="form-check-label fw-semibold">Online Payment (UPI / Card)</label>
                 </div>
 
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Card">
-                    <label class="form-check-label fw-semibold">Credit / Debit Card</label>
-                </div>
+                // // <div class="form-check mb-2">
+                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="UPI">
+                // //     <label class="form-check-label fw-semibold">UPI / Google Pay / PhonePe</label>
+                // // </div>
 
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Wallet">
-                    <label class="form-check-label fw-semibold">Wallet (Paytm / PhonePe)</label>
-                </div>
+                // // <div class="form-check mb-2">
+                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Card">
+                // //     <label class="form-check-label fw-semibold">Credit / Debit Card</label>
+                // // </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Online" disabled>
-                    <label class="form-check-label text-muted">Online Payment (Coming Soon)</label>
-                </div>
+                // // <div class="form-check mb-2">
+                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Wallet">
+                // //     <label class="form-check-label fw-semibold">Wallet (Paytm / PhonePe)</label>
+                // // </div>
+
+                // // <div class="form-check">
+                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Online" disabled>
+                // //     <label class="form-check-label text-muted">Online Payment (Coming Soon)</label>
+                // // </div>
             </div>
 
             <button class="btn btn-dark w-100 py-2 fw-bold" style="border-radius: 8px;">
@@ -96,3 +101,26 @@
         </form>
     </div>
 </div>
+<script>
+    const onlineRadio = document.getElementById("pmOnline");
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+        if (onlineRadio.checked) {
+            e.preventDefault(); // stop normal form submit
+
+            const form = this;
+
+            // Submit form using AJAX to Checkout POST
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.razorpayStartUrl) {
+                    window.location.href = data.razorpayStartUrl; // redirect to Razorpay flow
+                }
+            });
+        }
+    });
+</script>

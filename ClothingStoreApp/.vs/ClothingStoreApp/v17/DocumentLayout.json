@@ -1,77 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\",
+  "WorkspaceRootPath": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{326DDBC9-4679-415D-B8AB-E034017157DF}|..\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj|c:\\pr\\project\\clothsite\\clothingstore.infrastructure\\migrations\\20251116175217_addwebhooklogs2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{326DDBC9-4679-415D-B8AB-E034017157DF}|..\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj|c:\\pr\\project\\clothsite\\clothingstore.infrastructure\\migrations\\20251109183104_orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothsite\\clothingstore.core\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{326DDBC9-4679-415D-B8AB-E034017157DF}|..\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj|c:\\pr\\project\\clothsite\\clothingstore.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothsite\\clothingstoreapp\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\services\\hybridcartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothsite\\clothingstoreapp\\services\\hybridcartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:services\\hybridcartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstore.core\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\cart\\success.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\cart\\success.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstore.core\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstore.core\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstore.core\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\product\\_productspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\product\\_productspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstoreapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55C4662B-501E-40FC-AD1E-D724A608E758}|..\\ClothingStore.Core\\ClothingStore.Core.csproj|c:\\pr\\project\\clothingstoreapp\\clothingstore.core\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|c:\\pr\\project\\clothsite\\clothingstoreapp\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE2F1A83-640C-4096-8A4D-F4E03E85F44A}|ClothingStoreApp.csproj|solutionrelative:controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -81,255 +34,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADQAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-15T12:43:14.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwCAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-15T12:26:15.296Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CartService.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Services\\CartService.cs",
-              "RelativeDocumentMoniker": "Services\\CartService.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Services\\CartService.cs",
-              "RelativeToolTip": "Services\\CartService.cs",
-              "ViewState": "AgIAAJ0AAAAAAAAAAAD4v/MAAAA6AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "20251116175217_AddWebhookLogs2.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Migrations\\20251116175217_AddWebhookLogs2.cs",
+              "RelativeDocumentMoniker": "..\\ClothingStore.Infrastructure\\Migrations\\20251116175217_AddWebhookLogs2.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Migrations\\20251116175217_AddWebhookLogs2.cs",
+              "RelativeToolTip": "..\\ClothingStore.Infrastructure\\Migrations\\20251116175217_AddWebhookLogs2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T12:09:36.529Z",
+              "WhenOpened": "2025-11-16T17:52:17.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "HybridCartService.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Services\\HybridCartService.cs",
-              "RelativeDocumentMoniker": "Services\\HybridCartService.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Services\\HybridCartService.cs",
-              "RelativeToolTip": "Services\\HybridCartService.cs",
-              "ViewState": "AgIAAAQBAAAAAAAAAAAAwA0BAAAIAAAAAAAAAA==",
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Entities\\Order.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\Entities\\Order.cs",
+              "RelativeToolTip": "..\\ClothingStore.Core\\Entities\\Order.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAwwAkAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T11:46:12.567Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Success.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Cart\\Success.cshtml",
-              "RelativeDocumentMoniker": "Views\\Cart\\Success.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Cart\\Success.cshtml",
-              "RelativeToolTip": "Views\\Cart\\Success.cshtml",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-15T09:33:36.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Order\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Order\\Index.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Order\\Index.cshtml",
-              "RelativeToolTip": "Views\\Order\\Index.cshtml",
-              "ViewState": "AgIAAEQAAAAAAAAAAAArwE8AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-15T08:19:34.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-13T19:49:52.195Z",
+              "WhenOpened": "2025-11-16T17:50:55.272Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\CartController.cs",
-              "RelativeToolTip": "Controllers\\CartController.cs",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAAwMwAAAAIAAAAAAAAAA==",
+              "Title": "20251109183104_orders.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Migrations\\20251109183104_orders.cs",
+              "RelativeDocumentMoniker": "..\\ClothingStore.Infrastructure\\Migrations\\20251109183104_orders.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Migrations\\20251109183104_orders.cs",
+              "RelativeToolTip": "..\\ClothingStore.Infrastructure\\Migrations\\20251109183104_orders.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAYwF4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:38:05.584Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "OrderItem.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\OrderItem.cs",
-              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Entities\\OrderItem.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\OrderItem.cs",
-              "RelativeToolTip": "..\\ClothingStore.Core\\Entities\\OrderItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:30:16.394Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\Order.cs",
-              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Entities\\Order.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\Order.cs",
-              "RelativeToolTip": "..\\ClothingStore.Core\\Entities\\Order.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T00:05:19.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\CartItem.cs",
-              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Entities\\CartItem.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\CartItem.cs",
-              "RelativeToolTip": "..\\ClothingStore.Core\\Entities\\CartItem.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAqwBgAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:20:30.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Cart.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\Cart.cs",
-              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Entities\\Cart.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Entities\\Cart.cs",
-              "RelativeToolTip": "..\\ClothingStore.Core\\Entities\\Cart.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAArwBMAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:19:48.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "Controllers\\OrderController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAUwA4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:11:25.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Interfaces\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "..\\ClothingStore.Core\\Interfaces\\IProductRepository.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\Interfaces\\IProductRepository.cs",
-              "RelativeToolTip": "..\\ClothingStore.Core\\Interfaces\\IProductRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAcwA4AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:01:25.544Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "_ProductsPartial.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Product\\_ProductsPartial.cshtml",
-              "RelativeDocumentMoniker": "Views\\Product\\_ProductsPartial.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Product\\_ProductsPartial.cshtml",
-              "RelativeToolTip": "Views\\Product\\_ProductsPartial.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAAASwAwAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-12T21:40:20.986Z",
+              "WhenOpened": "2025-11-16T15:25:17.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAQwD8AAAAMAAAAAAAAAA==",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "..\\ClothingStore.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "..\\ClothingStore.Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwBQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T21:18:59.304Z",
+              "WhenOpened": "2025-11-16T15:21:32.907Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAwF4AAAAIAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "HybridCartService.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Services\\HybridCartService.cs",
+              "RelativeDocumentMoniker": "Services\\HybridCartService.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Services\\HybridCartService.cs",
+              "RelativeToolTip": "Services\\HybridCartService.cs",
+              "ViewState": "AgIAAPUAAAAAAAAAAAAWwAsBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T21:18:59.324Z",
+              "WhenOpened": "2025-11-16T15:19:39.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-12T21:19:51.264Z"
+              "DocumentIndex": 6,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "Controllers\\PaymentController.cs",
+              "ViewState": "AgIAAOYAAAAAAAAAAAAQwPAAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T15:13:08.157Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAUwDMAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
+              "ToolTip": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\Controllers\\CartController.cs",
+              "RelativeToolTip": "Controllers\\CartController.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAwwMAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T21:18:25.799Z",
+              "WhenOpened": "2025-11-16T15:08:28.98Z",
               "EditorCaption": ""
             }
           ]

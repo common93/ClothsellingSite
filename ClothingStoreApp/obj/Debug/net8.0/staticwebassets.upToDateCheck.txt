@@ -4,6 +4,7 @@ wwwroot\images\products\0da1eb48-fb06-4cfe-82a7-2d2b56aa3fdc.jpg
 wwwroot\images\products\0e36b5e6-c87e-44a5-a19f-3646868640e6.jpg
 wwwroot\images\products\139b3216-edd9-41c1-8dc8-aa729f2d9da0.jpg
 wwwroot\images\products\23ef363e-cce7-4247-a618-a7af42af2f59.jpg
+wwwroot\images\products\30211028-dde9-4fd8-875c-9d8a78439d6e.jpg
 wwwroot\images\products\449c6e63-48f7-4b42-a0d0-bff61476bc99.jpg
 wwwroot\images\products\47fe4df9-1c3d-46db-8913-87d7ca9d593e.jpg
 wwwroot\images\products\79a942af-5500-45bd-a8c4-b8d6d4c8ddfe.jpg

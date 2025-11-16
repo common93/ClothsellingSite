@@ -112,33 +112,27 @@ namespace ClothingStoreApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(CheckoutViewModel model)
         {
-            // 1️⃣ Must Login Before Checkout
             if (!User.Identity.IsAuthenticated)
             {
                 TempData["CheckoutError"] = "Please login to complete checkout.";
                 return RedirectToAction("Login", "Account", new { returnUrl = "/Cart/Checkout" });
             }
 
-            // 2️⃣ Validate Model
             if (!ModelState.IsValid)
                 return View(model);
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // 3️⃣ ALWAYS load cart using unified method
             var cartItems = await _cartService.GetUserCartAsync();
 
-            if (cartItems == null || !cartItems.Any())
+            if (!cartItems.Any())
                 return RedirectToAction("Index", "Cart");
 
             using var transaction = await _context.Database.BeginTransactionAsync();
 
-
             try
             {
-                // 4️⃣ Create Order
                 var order = new Order
-                {  
+                {
                     CustomerId = userId,
                     CustomerName = model.CustomerName,
                     Email = model.Email,
@@ -151,14 +145,12 @@ namespace ClothingStoreApp.Controllers
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
-
                 var orderId = _context.Orders
-               .Where(o => o.CustomerId == userId)
-               .OrderByDescending(o => o.OrderDate)
-               .Select(o => o.OrderId)
-               .FirstOrDefault();
+                              .Where(o => o.CustomerId == userId)
+                              .OrderByDescending(o => o.OrderDate)
+                              .Select(o => o.OrderId)
+                              .FirstOrDefault();
 
-                // 5️⃣ Insert Order Items + Update Stock
                 foreach (var item in cartItems)
                 {
                     var product = await _context.Products.FindAsync(item.ProductId);
@@ -167,7 +159,7 @@ namespace ClothingStoreApp.Controllers
                         throw new Exception($"Product {item.ProductId} not found.");
 
                     if (product.ProductStockQuantity < item.ProductQuantity)
-                        throw new Exception($"{product.ProductName} is out of stock.");
+                        throw new Exception($"{product.ProductName} not enough stock.");
 
                     product.ProductStockQuantity -= item.ProductQuantity;
 
@@ -184,22 +176,29 @@ namespace ClothingStoreApp.Controllers
 
                 await _context.SaveChangesAsync();
 
-                // 6️⃣ Clear cart with hybrid logic
                 await _cartService.ClearUserCartAsync();
-
                 await transaction.CommitAsync();
 
-                return RedirectToAction("Success", new { OrderId = orderId });
+                // 🟦 ONLINE PAYMENT FLOW
+                if (model.PaymentMethod == "Online")
+                {
+                    string url = Url.Action("Start", "Payments", new { orderId = orderId }, Request.Scheme);
+
+                    return Json(new { razorpayStartUrl = url });
+                }
+
+                // 🟩 COD FLOW
+                return RedirectToAction("Success", new { orderId = orderId });
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                Console.WriteLine("Checkout Error: " + ex.Message);
-
-                TempData["CheckoutError"] = "Something went wrong during checkout.";
+                TempData["CheckoutError"] = "Checkout failed.";
+                Console.WriteLine(ex.Message);
                 return RedirectToAction("Index", "Cart");
             }
         }
+
 
         public async Task<IActionResult> Success(string OrderId)
         {

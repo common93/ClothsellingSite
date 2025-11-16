@@ -1,0 +1,38 @@
+﻿@model RazorpayCheckoutViewModel
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<div class="container mt-5 text-center">
+    <h3>Complete Payment</h3>
+    <p>Order #@Model.OrderId — Amount: ₹@Model.Amount</p>
+
+    <button id="payBtn" class="btn btn-dark btn-lg mt-3">Pay Now</button>
+</div>
+
+<script>
+    document.getElementById("payBtn").onclick = function () {
+        var options = {
+            "key": "@Model.Key",
+            "amount": "@(Model.Amount * 100)",
+            "currency": "INR",
+            "name": "Clothing Store",
+            "description": "Order Payment",
+            "order_id": "@Model.RazorpayOrderId",
+            "handler": function (response) {
+                fetch("/Payments/Verify", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(response)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success)
+                        window.location = result.redirect;
+                    else
+                        alert("Payment failed. Please try again.");
+                });
+            }
+        };
+        var rzp = new Razorpay(options);
+        rzp.open();
+    }
+</script>

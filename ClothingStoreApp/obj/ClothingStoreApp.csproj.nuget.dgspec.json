@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj": {}
+    "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj": {}
   },
   "projects": {
-    "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\ClothingStore.Core.csproj": {
+    "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\ClothingStore.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\ClothingStore.Core.csproj",
+        "projectUniqueName": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\ClothingStore.Core.csproj",
         "projectName": "ClothingStore.Core",
-        "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\ClothingStore.Core.csproj",
+        "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\ClothingStore.Core.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\obj\\",
+        "outputPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -95,14 +95,14 @@
         }
       }
     },
-    "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
+    "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
+        "projectUniqueName": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
         "projectName": "ClothingStore.Infrastructure",
-        "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
+        "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\obj\\",
+        "outputPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -123,8 +123,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\ClothingStore.Core.csproj": {
-                "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Core\\ClothingStore.Core.csproj"
+              "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\ClothingStore.Core.csproj": {
+                "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Core\\ClothingStore.Core.csproj"
               }
             }
           }
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj": {
+    "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj",
+        "projectUniqueName": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj",
         "projectName": "ClothingStoreApp",
-        "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj",
+        "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\obj\\",
+        "outputPath": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -220,8 +220,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
-                "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj"
+              "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
+                "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj"
               }
             }
           }

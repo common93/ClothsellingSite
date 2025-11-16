@@ -5455,11 +5455,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj",
+      "projectUniqueName": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj",
       "projectName": "ClothingStoreApp",
-      "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\ClothingStoreApp.csproj",
+      "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\ClothingStoreApp.csproj",
       "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-      "outputPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStoreApp\\obj\\",
+      "outputPath": "C:\\PR\\Project\\ClothSite\\ClothingStoreApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5480,8 +5480,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
-              "projectPath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj"
+            "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj": {
+              "projectPath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj"
             }
           }
         }

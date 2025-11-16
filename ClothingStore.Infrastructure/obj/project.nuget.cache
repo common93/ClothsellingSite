@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jdFm693Wk38=",
+  "dgSpecHash": "qhBrYZh+ewk=",
   "success": true,
-  "projectFilePath": "C:\\PR\\Project\\ClothingStoreApp\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
+  "projectFilePath": "C:\\PR\\Project\\ClothSite\\ClothingStore.Infrastructure\\ClothingStore.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\muham\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\muham\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

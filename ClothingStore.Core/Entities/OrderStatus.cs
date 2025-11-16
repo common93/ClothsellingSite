@@ -14,4 +14,13 @@ namespace ClothingStore.Core.Entities
     Cancelled = 3,
     Delivered = 4
     }
+    public enum PaymentStatus
+    {
+    Pending = 0,
+    Completed = 1,
+    failed =2,
+    captured =3,
+    Cancelled = 4,
+    Refunded = 5
+    }
 }

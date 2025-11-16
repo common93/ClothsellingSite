@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "ClothingStoreApp.Controllers.PaymentsController",
+    "Method": "Webhook",
+    "RelativePath": "payments/webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
