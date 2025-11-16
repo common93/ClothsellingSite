@@ -1,0 +1,99 @@
+﻿@model ClothingStoreApp.Models.ProductViewModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="card shadow p-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3 class="fw-bold">Edit Product</h3>
+        <a class="btn btn-secondary" asp-action="Index">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    <form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+        @* Hidden ID *@
+        <input type="hidden" asp-for="Id" />
+
+        @* Keep old image if no new upload *@
+        <input type="hidden" asp-for="ImageUrl" />
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">Product Name</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">Category</label>
+                <select asp-for="Category" class="form-select" required>
+                    <option value="">-- Select Category --</option>
+                    <option>Men</option>
+                    <option>Women</option>
+                    <option>Kids</option>
+                    <option>Accessories</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label fw-semibold">Price (₹)</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label fw-semibold">Stock Quantity</label>
+                <input asp-for="StockQuantity" type="number" class="form-control" required />
+                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label fw-semibold">Product Image</label>
+                <input asp-for="ProductImage" type="file" class="form-control" accept="image/*" onchange="previewImage(event)" />
+                <span asp-validation-for="ProductImage" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label class="form-label fw-semibold">Description</label>
+                <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Current Image Preview -->
+            <div class="col-12 mb-3 text-center">
+                <img id="preview"
+                     src="@Model.ImageUrl"
+                     class="img-thumbnail"
+                     style="max-height:200px; display:@(string.IsNullOrEmpty(Model.ImageUrl) ? "none" : "block")" />
+            </div>
+
+        </div>
+
+        <button class="btn btn-dark px-4 fw-bold">
+            <i class="bi bi-check-circle"></i> Update Product
+        </button>
+
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function previewImage(event) {
+            var img = document.getElementById("preview");
+            img.src = URL.createObjectURL(event.target.files[0]);
+            img.style.display = "block";
+        }
+    </script>
+}

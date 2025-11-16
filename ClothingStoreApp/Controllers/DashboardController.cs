@@ -1,8 +1,10 @@
-﻿using ClothingStore.Infrastructure.Data;
+﻿using ClothingStore.Core.Entities;
+using ClothingStore.Core.Interfaces;
+using ClothingStore.Infrastructure.Data;
+using ClothingStoreApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ClothingStore.Core.Entities;
 
 namespace ClothingStoreApp.Controllers
 {
@@ -11,11 +13,16 @@ namespace ClothingStoreApp.Controllers
     public class DashboardController : Controller
     {
         private readonly AppDbContext _context;
-
-        public DashboardController(AppDbContext context)
+        private readonly IProductRepository _repo;
+        public DashboardController (AppDbContext context, IProductRepository repo)
         {
             _context = context;
+            _repo = repo;
         }
+        //public DashboardController(AppDbContext context)
+        //{
+        //    _context = context;
+        //}
 
         public async Task<IActionResult> Index()
         {
@@ -46,7 +53,175 @@ namespace ClothingStoreApp.Controllers
 
             return View();
         }
+        public async Task<IActionResult> AdminProductList(string category, string search, int page = 1, int pageSize = 12)
+        {
+            var products = _context.Products.AsQueryable();
 
+            // ✅ Category Filter
+            if (!string.IsNullOrEmpty(category))
+                products = products.Where(p => p.ProductCategory.ToLower() == category.ToLower());
+
+            // ✅ Search Filter
+            if (!string.IsNullOrEmpty(search))
+                products = products.Where(p =>
+                    p.ProductName.Contains(search) ||
+                    p.ProductDescription.Contains(search) ||
+                    p.ProductCategory.Contains(search)
+                );
+
+            // ✅ Pagination logic
+            var totalItems = await products.CountAsync();
+            var data = await products
+                .OrderBy(p => p.ProductName)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            ViewBag.Search = search;
+            ViewBag.Category = category;
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStock(int id, int newStock)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+                return NotFound();
+
+            product.ProductStockQuantity = newStock;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { success = true });
+        }
+
+                // Create Product (GET)
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            string imagePath = null;
+
+            if (model.ProductImage != null)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
+                Directory.CreateDirectory(uploadsFolder); // ensure folder exists
+
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ProductImage.FileName);
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.ProductImage.CopyToAsync(stream);
+                }
+
+                imagePath = "/images/products/" + fileName;
+            }
+
+            if (imagePath == null)
+                imagePath = "";
+
+            var product = new Product
+            {
+                ProductName = model.Name,
+                ProductDescription = model.Description,
+                ProductPrice = model.Price,
+                ProductCategory = model.Category,
+                ProductStockQuantity = model.StockQuantity,
+                //ImageUrl = model.ImageUrl,
+                ProductImageUrl = imagePath
+            };
+
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            TempData["success"] = "Product added successfully ✅";
+            return RedirectToAction("Index");
+        }
+
+        // Edit Product (GET)
+        public async Task<IActionResult> Edit(int id)
+        {
+            var product = await _repo.GetByIdAsync(id);
+            if (product == null) return NotFound();
+
+            var vm = new ProductViewModel
+            {
+                Id = product.ProductId,
+                Name = product.ProductName,
+                Description = product.ProductDescription,
+                Price = product.ProductPrice,
+                Category = product.ProductCategory,
+                StockQuantity = product.ProductStockQuantity,
+                ImageUrl = product.ProductImageUrl
+            };
+
+            return View(vm);
+        }
+
+        // Edit Product (POST)
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var product = await _repo.GetByIdAsync(model.Id);
+                if (product == null) return NotFound();
+
+
+                string imagePath = null;
+                if (model.ProductImage != null)
+                {
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
+                    Directory.CreateDirectory(uploadsFolder); // ensure folder exists
+
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ProductImage.FileName);
+                    string filePath = Path.Combine(uploadsFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.ProductImage.CopyToAsync(stream);
+                    }
+
+                    imagePath = "/images/products/" + fileName;
+                }
+
+                if (imagePath == null)
+                    imagePath = "";
+
+                product.ProductName = model.Name;
+                product.ProductDescription = model.Description;
+                product.ProductPrice = model.Price;
+                product.ProductCategory = model.Category;
+                product.ProductStockQuantity = model.StockQuantity;
+                product.ProductImageUrl = imagePath;
+
+                await _repo.UpdateAsync(product);
+
+                return RedirectToAction("Index");
+
+
+            }
+
+            return View(model);
+        }
+
+        // Delete Product
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _repo.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
         //[Area("Admin")]
         //[Authorize(Roles = "Admin")]
         //[Route("Admin/Products")]

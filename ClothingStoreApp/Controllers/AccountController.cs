@@ -6,21 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClothingStoreApp.Controllers
 {
-        public class AccountController : Controller
-        {
-            private readonly SignInManager<ApplicationUser> _signInManager;
-            private readonly UserManager<ApplicationUser> _userManager;
-            private readonly RoleManager<IdentityRole> _roleManager;
+    public class AccountController : Controller
+    {
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-            public AccountController(
-                SignInManager<ApplicationUser> signInManager,
-                UserManager<ApplicationUser> userManager,
-                RoleManager<IdentityRole> roleManager)
-            {
-                _signInManager = signInManager;
-                _userManager = userManager;
-                _roleManager = roleManager;
-            }
+        public AccountController(
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
         public IActionResult Index()
         {
             return View();
@@ -34,18 +34,18 @@ namespace ClothingStoreApp.Controllers
         }
 
         [HttpPost]
-            public async Task<IActionResult> Login(string email, string password,string returnUrl = "/")
+        public async Task<IActionResult> Login(string email, string password, string returnUrl = "/")
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
             {
-                var user = await _userManager.FindByEmailAsync(email);
-                if (user == null)
-                {
-                    ViewBag.Error = "Invalid login attempt";
-                    return View();
-                }
+                ViewBag.Error = "Invalid login attempt";
+                return View();
+            }
 
-                var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
-                if (result.Succeeded)
-                {
+            var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
+            if (result.Succeeded)
+            {
                 // after successful sign-in:
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
@@ -54,49 +54,49 @@ namespace ClothingStoreApp.Controllers
                 await cartService.MergeSessionCartToDbAsync();
 
                 return Redirect(returnUrl);
-               // return RedirectToAction("Index", "Home");
+                // return RedirectToAction("Index", "Home");
 
-                }
- 
-
-                ViewBag.Error = "Invalid login attempt";
-                return View();
             }
 
-            [HttpGet]
-        public IActionResult Register(string returnUrl = "/")
-        {
-            ViewBag.ReturnUrl = returnUrl+ "Account/Login";
+
+            ViewBag.Error = "Invalid login attempt";
             return View();
         }
 
-            [HttpPost]
-            public async Task<IActionResult> Register(string fullName, string email, string password ,string Role, string returnUrl = "/")
+        [HttpGet]
+        public IActionResult Register(string returnUrl = "/")
+        {
+            ViewBag.ReturnUrl = returnUrl + "Account/Login";
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(string fullName, string email, string password, string Role, string returnUrl = "/")
+        {
+            var user = new ApplicationUser
             {
-                var user = new ApplicationUser
-                {
-                    FullName = fullName,
-                    Email = email,
-                    UserName = email
-                };
+                FullName = fullName,
+                Email = email,
+                UserName = email
+            };
 
-                var result = await _userManager.CreateAsync(user, password);
+            var result = await _userManager.CreateAsync(user, password);
 
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, Role);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, Role);
                 //return RedirectToAction("Login",returnUrl);
                 return Redirect(returnUrl);
-                }
-
-                ViewBag.Error = string.Join(", ", result.Errors.Select(e => e.Description));
-                return View();
             }
 
-            public async Task<IActionResult> Logout()
-            {
-                await _signInManager.SignOutAsync();
-                return RedirectToAction("Index", "Home");
-            }
+            ViewBag.Error = string.Join(", ", result.Errors.Select(e => e.Description));
+            return View();
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }
