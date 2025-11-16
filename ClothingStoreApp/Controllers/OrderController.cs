@@ -37,7 +37,7 @@ public class OrderController : Controller
     }
 
     [HttpPost("Approve/{id}")]
-    public async Task<IActionResult> Approve(int id)
+    public async Task<IActionResult> Approve(string id)
     {
         var order = await _context.Orders.FindAsync(id);
         if (order == null) return NotFound();
@@ -50,7 +50,7 @@ public class OrderController : Controller
     }
 
     [HttpPost("Ship/{id}")]
-    public async Task<IActionResult> Ship(int id)
+    public async Task<IActionResult> Ship(string id)
     {
         var order = await _context.Orders.FindAsync(id);
         if (order == null) return NotFound();
