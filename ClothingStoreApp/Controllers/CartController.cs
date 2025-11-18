@@ -104,7 +104,7 @@ namespace ClothingStoreApp.Controllers
 
             ViewBag.Total = dbCart.Sum(x => x.Product.ProductPrice * x.Quantity);
 
-            return View(new CheckoutViewModel());
+            return View(new RazorpayCheckoutViewModel());
         }
         // =============================
         //  CHECKOUT (POST)

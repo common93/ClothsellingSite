@@ -162,7 +162,7 @@ namespace ClothingStoreApp.Controllers
             using var tx = await _db.Database.BeginTransactionAsync();
             try
             {
-                order.PaymentId = razorpayPaymentId;
+                order.RazorpayPaymentId = razorpayPaymentId;
                 order.PaymentStatus = PaymentStatus.Pending;
                 order.OrderStatus = OrderStatus.Approved;
                 await _db.SaveChangesAsync();
@@ -303,7 +303,7 @@ namespace ClothingStoreApp.Controllers
         {
             if (string.IsNullOrEmpty(razorpayPaymentId)) return false;
 
-            var already = await _db.Orders.AnyAsync(o => o.PaymentId == razorpayPaymentId);
+            var already = await _db.Orders.AnyAsync(o => o.RazorpayPaymentId == razorpayPaymentId);
             if (already) return true;
 
             var log = await _db.WebhookLogs.FirstOrDefaultAsync(l => l.RazorpayPaymentId == razorpayPaymentId && l.Processed);

@@ -1,4 +1,6 @@
-﻿@model CheckoutViewModel
+﻿@* @model CheckoutViewModel *@
+@model RazorpayCheckoutViewModel
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 @{
     var cart = ViewBag.Cart as List<ClothingStoreApp.Models.CartViewModel> ?? new();
@@ -74,53 +76,93 @@
                     <label class="form-check-label fw-semibold">Online Payment (UPI / Card)</label>
                 </div>
 
-                // // <div class="form-check mb-2">
-                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="UPI">
-                // //     <label class="form-check-label fw-semibold">UPI / Google Pay / PhonePe</label>
-                // // </div>
 
-                // // <div class="form-check mb-2">
-                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Card">
-                // //     <label class="form-check-label fw-semibold">Credit / Debit Card</label>
-                // // </div>
+            </div>
+            <div class="payment-section mt-5 text-center">
 
-                // // <div class="form-check mb-2">
-                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Wallet">
-                // //     <label class="form-check-label fw-semibold">Wallet (Paytm / PhonePe)</label>
-                // // </div>
+                <h3 class="fw-bold mb-2" style="font-size: 1.6rem;">Complete Payment</h3>
 
-                // // <div class="form-check">
-                // //     <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Online" disabled>
-                // //     <label class="form-check-label text-muted">Online Payment (Coming Soon)</label>
-                // // </div>
+                <p class="mb-4 fw-bold" style="font-size: 1.8rem; color:#111;">
+                    Amount: ₹@ViewBag.Total
+                </p>
+                <button id="payBtn"
+                        class="btn w-100 py-3 fw-semibold rounded-3 shadow-sm pay-btn"
+                        type="button">
+                    <span id="payBtnText">Pay Now</span>
+                    <span id="payBtnLoader" class="spinner-border spinner-border-sm ms-2 d-none"></span>
+                </button>
             </div>
 
-            <button class="btn btn-dark w-100 py-2 fw-bold" style="border-radius: 8px;">
-                Place Order
-            </button>
         </form>
     </div>
 </div>
 <script>
-    const onlineRadio = document.getElementById("pmOnline");
+    document.getElementById("payBtn").onclick = function (e) {
+        e.preventDefault();
 
-    document.querySelector("form").addEventListener("submit", function (e) {
-        if (onlineRadio.checked) {
-            e.preventDefault(); // stop normal form submit
+        // STEP 1: Create order from backend
+        fetch("/Checkout/CreateOrder?amount=@total", {
+            method: "POST"
+        })
+        .then(res => res.json())
+        .then(order => {
 
-            const form = this;
+            // STEP 2: Razorpay popup options
+            var options = {
+                "key": order.key,
+                "amount": "@(total * 100)",
+                "currency": "INR",
+                "name": "Clothing Store",
+                "description": "Order Payment",
+                "order_id": order.orderId,
 
-            // Submit form using AJAX to Checkout POST
-            fetch(form.action, {
-                method: "POST",
-                body: new FormData(form)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.razorpayStartUrl) {
-                    window.location.href = data.razorpayStartUrl; // redirect to Razorpay flow
+                "handler": function (response) {
+
+                    // STEP 3: Send to backend for signature verify
+                    fetch("/Checkout/Verify", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(response)
+                    })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.success)
+                            window.location = result.redirect;
+                        else
+                            alert("Payment Failed. Try again.");
+                    });
                 }
-            });
-        }
-    });
+            };
+
+            var rzp = new Razorpay(options);
+            rzp.open();
+        });
+    }
 </script>
+<style>
+    .payment-section {
+        background: #ffffff;
+        padding: 25px 20px;
+        border-radius: 12px;
+        border: 1px solid #e9e9e9;
+    }
+
+    .pay-btn {
+        background: linear-gradient(135deg, #0057ff, #007bff);
+        color: #fff;
+        font-size: 1.1rem;
+        transition: all .25s ease;
+        border: none;
+    }
+
+        .pay-btn:hover {
+            background: linear-gradient(135deg, #0049d1, #006ae6);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 80, 255, 0.25);
+        }
+
+        .pay-btn:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+</style>

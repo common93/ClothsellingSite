@@ -1,0 +1,120 @@
+[33mcommit e9bfacf510129c2f72959016df95f86eda975984[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 2af8cb8 646450d
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:40:08 2025 +0530
+
+    Merge recover-my-changes (bin/obj resolved)
+
+[33mcommit 2af8cb8ee0c3548e70f93101566888216213cdf3[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:37:28 2025 +0530
+
+    Updated gitignore
+
+[33mcommit d3576fe06438b970e13d83d8e4a120377a29d444[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:31:03 2025 +0530
+
+    Cleanup: removed bin/obj/.vs from Git
+
+[33mcommit 095287b4343c5fcf46b580160eeef180e945a3dc[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:25:51 2025 +0530
+
+    Cleanup: removed bin/obj/.vs from Git
+
+[33mcommit 1daed570c29322b3fffb4978fe68a8dfc4842917[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:20:16 2025 +0530
+
+    Remove .vs folder from tracking
+
+[33mcommit cbfa0e8230c8d1bde53dba0cf82d0d57beab7097[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 01:13:08 2025 +0530
+
+    Remove build folders from Git
+
+[33mcommit 646450d8a54dffa669526509098eb39be151be75[m[33m ([m[1;31morigin/recover-my-changes[m[33m)[m
+Author: Delbin <delbinsebs199@gmail.com>
+Date:   Mon Nov 17 00:41:17 2025 +0530
+
+    Recovered all my changes
+
+[33mcommit 7c3c2131eaa928c6d5401effb27013e992a021ac[m
+Author: common93 <muhammedshiyanv@gmail.com>
+Date:   Sun Nov 16 23:28:05 2025 +0530
+
+    order tsble modified
+
+[33mcommit 4cfad0ae632059e8d1371bcfed0e2f8b4630f758[m
+Author: common93 <muhammedshiyanv@gmail.com>
+Date:   Sun Nov 16 16:08:10 2025 +0530
+
+    deleted unwanted project
+
+[33mcommit 1218cb99e4c32cca5721d6559451304759a1685b[m[33m ([m[1;31mclothing/main[m[33m, [m[1;31mclothing/HEAD[m[33m)[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Sun Nov 16 11:55:59 2025 +0530
+
+    cart functionality modified
+
+[33mcommit 2c4ef3a2b85c7e16ad73562d97d2dbeb930f6aaf[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Sat Nov 15 13:03:26 2025 +0530
+
+    recent changes cart and order
+
+[33mcommit 2d8a6f1bd68bfa1b27ae6af3c0ba9cd584f0fc13[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Thu Nov 13 05:15:19 2025 +0530
+
+    hybrid cart implimented merge session data and db
+
+[33mcommit 7289c337870da803839c94f5d2f10a2111090236[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Thu Nov 13 04:11:14 2025 +0530
+
+    cart functionality implimented from db
+
+[33mcommit 1b4daf6eaed73ddc561d4f34b1689aaf7c27d3c6[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Thu Nov 13 03:46:59 2025 +0530
+
+    home page modified - pagination from partial view
+
+[33mcommit 6bd1aac0807535d51702a9107c8090d68c55aa63[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Wed Nov 12 03:01:59 2025 +0530
+
+    list all products
+
+[33mcommit 937a0a54d573edf74d6912c98e7279bdb0b57cfc[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Wed Nov 12 02:09:46 2025 +0530
+
+    order management
+
+[33mcommit cb0aeef7f230bf1ab5653a5f74ab49f9d19818af[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Tue Nov 11 11:17:22 2025 +0530
+
+    Fix ignore VS temporary files
+
+[33mcommit be4579ddb5e5ab23a67a895b9b6473057694fae3[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Tue Nov 11 11:14:43 2025 +0530
+
+    Initial commit
+
+[33mcommit 68806f88795730521a780dd88b3aa5b53bfa0067[m
+Author: muhammedshiyanv <muhammedshiyanv@gmail.com>
+Date:   Mon Nov 3 11:32:23 2025 +0530
+
+    Initial commit
+
+[33mcommit 84d772ee3332b7f41604a5ac2c0409ffe4f6e7e0[m
+Author: muhammedshiyan <139226099+muhammedshiyan@users.noreply.github.com>
+Date:   Mon Nov 3 11:40:47 2025 +0530
+
+    Initial commit

@@ -26,7 +26,7 @@ namespace ClothingStore.Core.Entities
 
         public string RazorpayOrderId { get; set; } = "";     // returned during order creation
         public string RazorpayPaymentId { get; set; } = "";   // returned after payment
-        public string PaymentId { get; set; }
+       // public string PaymentId { get; set; }
         public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
 
